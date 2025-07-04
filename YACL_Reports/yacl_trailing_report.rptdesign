@@ -1,0 +1,2449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.26" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.18.0.v202411161754</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">373</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">373</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">373</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="theme">yacl_connection.defaultTheme</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">yacl_connection.rptlibrary</property>
+            <property name="namespace">yacl_connection</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="Currency" id="405">
+            <text-property name="promptText">Rate</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">float</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">reportContext.log("Currency Parameter: " + params["Currency"]);</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="date_from" id="418">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.now();</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">dd/MM/yyyy</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="date_to" id="419">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.now();</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">dd/MM/yyyy</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="yacl_connection" id="5">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:5432/yacl_live</property>
+            <property name="odaUser">odoo_16</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">YWRtaW4xMjMk</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Company_Information" id="345">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">logo_web</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">logo_web</text-property>
+                    <text-property name="heading">logo_web</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">phone</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">phone</text-property>
+                    <text-property name="heading">phone</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">email</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">email</text-property>
+                    <text-property name="heading">email</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">logo_web</property>
+                        <property name="dataType">blob</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">phone</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">email</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">logo_web</property>
+                    <property name="nativeName">logo_web</property>
+                    <property name="dataType">blob</property>
+                    <property name="nativeDataType">-2</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">phone</property>
+                    <property name="nativeName">phone</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">email</property>
+                    <property name="nativeName">email</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[Select 
+	name,
+	 decode(
+        REPLACE(
+            REPLACE(
+                CONVERT_FROM(logo_web, 'UTF-8'), -- Convert bytea to text
+                '-', '+'
+            ), 
+            '_', '/'
+        ),
+        'base64'
+    ) AS logo_web,
+	phone,
+	email
+	from res_company]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>logo_web</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-2</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>logo_web</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>logo_web</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Check_in_counter" id="373">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints"/>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">rate_currency</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">amount</property>
+                    <property name="nativeName">amount</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency_id</property>
+                    <property name="nativeName">currency_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">rate_currency</property>
+                    <property name="nativeName">rate_currency</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT
+	ccl.amount,
+	cc.currency_id,
+	ccr.name,
+	ccr.currency_id rate_currency
+FROM checkin_counter cc
+LEFT JOIN checkin_counter_line ccl ON (ccl.checkin_counter_id = cc.id)
+LEFT JOIN checkin_counter_rate ccr ON (cc.checkin_counter_rate_id = ccr.id)]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="yacl_total_ledger_usd" id="417">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date</text-property>
+                    <text-property name="heading">date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">currency</text-property>
+                    <text-property name="heading">currency</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">journal</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">journal</text-property>
+                    <text-property name="heading">journal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">debit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">debit</text-property>
+                    <text-property name="heading">debit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">credit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">credit</text-property>
+                    <text-property name="heading">credit</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">from_date</property>
+                    <property name="paramName">date_from</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">to_date</property>
+                    <property name="paramName">date_to</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">journal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date</property>
+                    <property name="nativeName">date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency</property>
+                    <property name="nativeName">currency</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">journal</property>
+                    <property name="nativeName">journal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">debit</property>
+                    <property name="nativeName">debit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">credit</property>
+                    <property name="nativeName">credit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	aml.date,
+	rec.name as currency,
+	aa.name ->> 'en_US' AS journal,
+	aml.debit,
+	aml.credit
+	FROM account_move am 
+	JOIN account_move_line aml ON (aml.move_id = am.id)
+	JOIN account_account aa ON (aa.id = aml.account_id)
+	JOIN account_journal aj ON (aj.id = aml.journal_id)
+	JOIN res_currency rec ON (rec.id = aml.currency_id)
+WHERE CAST(aml.date AT TIME ZONE 'asia/yangon' as date) BETWEEN ? AND ?
+AND rec.id = 1]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>journal</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>journal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>journal</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>total</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>total</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="yacl_total_ledger_mmk" id="485">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date</text-property>
+                    <text-property name="heading">date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">currency</text-property>
+                    <text-property name="heading">currency</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">journal</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">journal</text-property>
+                    <text-property name="heading">journal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">usd_credit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">usd_credit</text-property>
+                    <text-property name="heading">usd_credit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">usd_debit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">usd_debit</text-property>
+                    <text-property name="heading">usd_debit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">mmk_credit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">mmk_credit</text-property>
+                    <text-property name="heading">mmk_credit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">mmk_debit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">mmk_debit</text-property>
+                    <text-property name="heading">mmk_debit</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">from_date</property>
+                    <property name="paramName">date_from</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">to_date</property>
+                    <property name="paramName">date_to</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">journal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">usd_credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">usd_debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">mmk_credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">mmk_debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date</property>
+                    <property name="nativeName">date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency</property>
+                    <property name="nativeName">currency</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">journal</property>
+                    <property name="nativeName">journal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">usd_credit</property>
+                    <property name="nativeName">usd_credit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">usd_debit</property>
+                    <property name="nativeName">usd_debit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">mmk_credit</property>
+                    <property name="nativeName">mmk_credit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">mmk_debit</property>
+                    <property name="nativeName">mmk_debit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+    aml.date,
+    rec.name AS currency,
+    aa.name ->> 'en_US' AS journal,
+    -- USD Columns
+    SUM(CASE WHEN rec.id = 1 AND aml.balance >= 0 THEN aml.balance ELSE 0 END) AS usd_credit,
+    SUM(CASE WHEN rec.id = 1 AND aml.balance < 0 THEN ABS(aml.balance) ELSE 0 END) AS usd_debit,
+    -- MMK Columns
+    SUM(CASE WHEN rec.id = 115 AND aml.balance >= 0 THEN aml.balance ELSE 0 END) AS mmk_credit,
+    SUM(CASE WHEN rec.id = 115 AND aml.balance < 0 THEN ABS(aml.balance) ELSE 0 END) AS mmk_debit
+FROM account_move am
+JOIN account_move_line aml ON aml.move_id = am.id
+JOIN account_account aa ON aa.id = aml.account_id
+JOIN account_journal aj ON aj.id = aml.journal_id
+JOIN res_currency rec ON rec.id = aml.currency_id
+WHERE CAST(aml.date AT TIME ZONE 'asia/yangon' AS date) BETWEEN ? AND ?
+AND rec.id IN (1, 115) -- Filter for USD and MMK currencies
+GROUP BY rec.name, aa.name, aml.date
+ORDER BY aml.date, rec.name;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>journal</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>journal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>journal</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>total</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>total</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="yacl_total_ledger" id="486">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date</text-property>
+                    <text-property name="heading">date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">currency</text-property>
+                    <text-property name="heading">currency</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">journal</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">journal</text-property>
+                    <text-property name="heading">journal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">usd_credit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">usd_credit</text-property>
+                    <text-property name="heading">usd_credit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">usd_debit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">usd_debit</text-property>
+                    <text-property name="heading">usd_debit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">mmk_credit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">mmk_credit</text-property>
+                    <text-property name="heading">mmk_credit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">mmk_debit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">mmk_debit</text-property>
+                    <text-property name="heading">mmk_debit</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">from_date</property>
+                    <property name="paramName">date_from</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">date_to</property>
+                    <property name="paramName">date_to</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">journal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">usd_credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">usd_debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">mmk_credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">mmk_debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date</property>
+                    <property name="nativeName">date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency</property>
+                    <property name="nativeName">currency</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">journal</property>
+                    <property name="nativeName">journal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">usd_credit</property>
+                    <property name="nativeName">usd_credit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">usd_debit</property>
+                    <property name="nativeName">usd_debit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">mmk_credit</property>
+                    <property name="nativeName">mmk_credit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">mmk_debit</property>
+                    <property name="nativeName">mmk_debit</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+    aml.date,
+    rec.name AS currency,
+    aa.name ->> 'en_US' AS journal,
+    -- USD Columns
+    SUM(CASE WHEN rec.id = 1 AND aml.balance >= 0 THEN aml.balance ELSE 0 END) AS usd_credit,
+    SUM(CASE WHEN rec.id = 1 AND aml.balance < 0 THEN ABS(aml.balance) ELSE 0 END) AS usd_debit,
+    -- MMK Columns
+    SUM(CASE WHEN rec.id = 115 AND aml.balance >= 0 THEN aml.balance ELSE 0 END) AS mmk_credit,
+    SUM(CASE WHEN rec.id = 115 AND aml.balance < 0 THEN ABS(aml.balance) ELSE 0 END) AS mmk_debit
+FROM account_move am
+JOIN account_move_line aml ON aml.move_id = am.id
+JOIN account_account aa ON aa.id = aml.account_id
+JOIN account_journal aj ON aj.id = aml.journal_id
+JOIN res_currency rec ON rec.id = aml.currency_id
+WHERE CAST(aml.date AT TIME ZONE 'asia/yangon' AS date) BETWEEN ? AND ?
+AND rec.id IN (1, 115) -- Filter for USD and MMK currencies
+GROUP BY rec.name, aa.name, aml.date
+ORDER BY aml.date, rec.name;
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>date</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>date</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>journal</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>journal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>journal</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>usd_credit</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>usd_credit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>usd_credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>usd_debit</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>usd_debit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>usd_debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>mmk_credit</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>mmk_credit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>mmk_credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>mmk_debit</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>mmk_debit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>mmk_debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>131089</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">landscape</property>
+            <property name="headerHeight">1in</property>
+            <page-header>
+                <grid id="102">
+                    <property name="dataSet">Company_Information</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">name</property>
+                            <text-property name="displayName">name</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">logo_web</property>
+                            <text-property name="displayName">logo_web</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["logo_web"]</expression>
+                            <property name="dataType">blob</property>
+                        </structure>
+                        <structure>
+                            <property name="name">phone</property>
+                            <text-property name="displayName">phone</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["phone"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">email</property>
+                            <text-property name="displayName">email</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["email"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                    </list-property>
+                    <column id="103">
+                        <property name="width">1.5in</property>
+                    </column>
+                    <column id="104"/>
+                    <column id="105"/>
+                    <row id="106">
+                        <cell id="107">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">5</property>
+                            <image id="2190">
+                                <property name="marginTop">5pt</property>
+                                <property name="marginLeft">15pt</property>
+                                <property name="height">0.8in</property>
+                                <property name="width">1in</property>
+                                <property name="source">expr</property>
+                                <expression name="valueExpr">row["logo_web"]</expression>
+                            </image>
+                        </cell>
+                        <cell id="108">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">5</property>
+                            <data id="2188">
+                                <property name="fontSize">16pt</property>
+                                <property name="color">maroon</property>
+                                <property name="marginTop">15pt</property>
+                                <property name="dataSet">Company_Information</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">name</property>
+                                        <text-property name="displayName">name</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">name</property>
+                            </data>
+                            <data id="2191">
+                                <property name="resultSetColumn">email</property>
+                            </data>
+                            <data id="2192">
+                                <property name="resultSetColumn">phone</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="110"/>
+                    <row id="114"/>
+                    <row id="118"/>
+                    <row id="169"/>
+                </grid>
+            </page-header>
+            <page-footer>
+                <text id="168">
+                    <property name="backgroundColor">#1D8EE2</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingBottom">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[Printed at : <value-of>Formatter.format(new Date(), "dd/MM/yyyy");</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="2329">
+            <property name="dataSet">Company_Information</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">logo_web</property>
+                    <text-property name="displayName">logo_web</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["logo_web"]</expression>
+                    <property name="dataType">blob</property>
+                </structure>
+                <structure>
+                    <property name="name">phone</property>
+                    <text-property name="displayName">phone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["phone"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">email</property>
+                    <text-property name="displayName">email</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["email"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="2330">
+                <property name="width">1.3in</property>
+            </column>
+            <column id="2331"/>
+            <column id="2360">
+                <property name="width">0.3in</property>
+            </column>
+            <column id="2348"/>
+            <column id="2352"/>
+            <column id="2332">
+                <property name="width">1in</property>
+            </column>
+            <row id="2333">
+                <property name="verticalAlign">middle</property>
+                <cell id="2334">
+                    <text id="2354">
+                        <property name="marginRight">5pt</property>
+                        <property name="textAlign">right</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[From Date :]]></text-property>
+                    </text>
+                </cell>
+                <cell id="2335">
+                    <text-data id="2364">
+                        <expression name="valueExpr">var formatter = new java.text.SimpleDateFormat("dd/MM/yyyy");&#13;
+formatter.format(params["date_from"]);</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+                <cell id="2357"/>
+                <cell id="2345"/>
+                <cell id="2349">
+                    <text id="2353">
+                        <property name="marginRight">5pt</property>
+                        <property name="textAlign">right</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[To Date :]]></text-property>
+                    </text>
+                </cell>
+                <cell id="2336">
+                    <text-data id="2365">
+                        <expression name="valueExpr">var formatter = new java.text.SimpleDateFormat("dd/MM/yyyy");&#13;
+formatter.format(params["date_to"]);</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="2337">
+                <property name="verticalAlign">middle</property>
+                <cell id="2338">
+                    <text id="2356">
+                        <property name="marginRight">5pt</property>
+                        <property name="textAlign">right</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[Currency Rate :]]></text-property>
+                    </text>
+                </cell>
+                <cell id="2339">
+                    <text-data id="2355">
+                        <expression name="valueExpr">params["Currency"].value + ' Ks'</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+                <cell id="2358"/>
+                <cell id="2346"/>
+                <cell id="2350"/>
+                <cell id="2340"/>
+            </row>
+        </grid>
+        <label id="35">
+            <property name="backgroundColor">#0080C0</property>
+            <property name="fontSize">16pt</property>
+            <property name="color">#FFFFFF</property>
+            <property name="marginTop">1pt</property>
+            <property name="marginBottom">1pt</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">Tralling Report</text-property>
+        </label>
+        <table id="420">
+            <property name="marginTop">5pt</property>
+            <property name="marginRight">2pt</property>
+            <property name="dataSet">yacl_total_ledger</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">date</property>
+                    <text-property name="displayName">date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">currency</property>
+                    <text-property name="displayName">currency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["currency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">journal</property>
+                    <text-property name="displayName">journal</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["journal"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">usd_credit</property>
+                    <text-property name="displayName">usd_credit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["usd_credit"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">usd_debit</property>
+                    <text-property name="displayName">usd_debit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["usd_debit"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">mmk_credit</property>
+                    <text-property name="displayName">mmk_credit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["mmk_credit"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">mmk_debit</property>
+                    <text-property name="displayName">mmk_debit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["mmk_debit"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">debit_total_usd</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["usd_debit"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">credit_usd</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["usd_credit"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">total_debit_mmk</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["mmk_debit"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">total_credit_mmk</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["mmk_credit"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="439"/>
+            <column id="460">
+                <property name="width">1.5in</property>
+            </column>
+            <column id="466">
+                <property name="width">1.5in</property>
+            </column>
+            <column id="502">
+                <property name="width">1in</property>
+            </column>
+            <column id="475">
+                <property name="width">1.5in</property>
+            </column>
+            <column id="482">
+                <property name="width">1.5in</property>
+            </column>
+            <header>
+                <row id="421">
+                    <property name="backgroundColor">#C0C0C0</property>
+                    <cell id="422">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <label id="425">
+                            <text-property name="text">Journal</text-property>
+                        </label>
+                    </cell>
+                    <cell id="456">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="461">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Initital Balance (USD)]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="498">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <label id="449">
+                            <text-property name="text">Date</text-property>
+                        </label>
+                    </cell>
+                    <cell id="471">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="477">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[End Balance(MMK)]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="451">
+                    <property name="backgroundColor">#C0C0C0</property>
+                    <cell id="457">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="467">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Debit]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="463">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="468">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Credit]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="472">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="483">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Debit]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="479">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <text id="484">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Credit]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="428">
+                    <cell id="429">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="487">
+                            <property name="resultSetColumn">journal</property>
+                        </data>
+                    </cell>
+                    <cell id="458">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="489">
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">usd_debit</property>
+                        </data>
+                    </cell>
+                    <cell id="464">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="488">
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">usd_credit</property>
+                        </data>
+                    </cell>
+                    <cell id="500">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="492">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="resultSetColumn">date</property>
+                        </data>
+                    </cell>
+                    <cell id="473">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="490">
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">mmk_debit</property>
+                        </data>
+                    </cell>
+                    <cell id="480">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="491">
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">mmk_credit</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="435">
+                    <property name="backgroundColor">#D8D8D8</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <cell id="436">
+                        <property name="verticalAlign">middle</property>
+                        <text id="495">
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Total USD]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="459">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="493">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">debit_total_usd</property>
+                        </data>
+                    </cell>
+                    <cell id="465">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="494">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">credit_usd</property>
+                        </data>
+                    </cell>
+                    <cell id="501">
+                        <property name="verticalAlign">middle</property>
+                    </cell>
+                    <cell id="474">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <text-data id="512">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <property name="textAlign">right</property>
+                            <expression name="valueExpr">var result = row["total_debit_mmk"] / (params["Currency"].value);&#13;
+var formattedResult = new java.text.DecimalFormat("#,###.00").format(result);&#13;
+formattedResult</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="481">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <text-data id="513">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <property name="textAlign">right</property>
+                            <expression name="valueExpr">var result = row["total_credit_mmk"] / (params["Currency"].value);&#13;
+var formattedResult = new java.text.DecimalFormat("#,###.00").format(result);&#13;
+formattedResult</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+                <row id="503">
+                    <property name="backgroundColor">#D1D1D1</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">1px</property>
+                    <cell id="504">
+                        <property name="verticalAlign">middle</property>
+                        <text id="510">
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Total MMK]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="505">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <text-data id="412">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <property name="textAlign">right</property>
+                            <expression name="valueExpr">var result = (params["Currency"].value) * row["debit_total_usd"];&#13;
+var formattedResult = new java.text.DecimalFormat("#,###.00").format(result);&#13;
+formattedResult</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="506">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <text-data id="511">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <property name="textAlign">right</property>
+                            <expression name="valueExpr">var result = (params["Currency"].value) * row["credit_usd"];&#13;
+var formattedResult = new java.text.DecimalFormat("#,###.00").format(result);&#13;
+formattedResult</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="507">
+                        <property name="verticalAlign">middle</property>
+                    </cell>
+                    <cell id="508">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="496">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">total_debit_mmk</property>
+                        </data>
+                    </cell>
+                    <cell id="509">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <property name="verticalAlign">middle</property>
+                        <data id="497">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">5pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">total_credit_mmk</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">yacl_logo.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAUYAAABdCAYAAADZsc8cAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn
+                ZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/
+                IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6
+                bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8w
+                Mi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9y
+                Zy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIg
+                eG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDov
+                L25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20v
+                eGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9w
+                IENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEFFMzBDMjQ5ODk3MTFFOUI1
+                N0VENTY2NjA3NDE2MzMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEFFMzBDMjU5ODk3MTFFOUI1
+                N0VENTY2NjA3NDE2MzMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlp
+                ZDo0QUUzMEMyMjk4OTcxMUU5QjU3RUQ1NjY2MDc0MTYzMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRp
+                ZDo0QUUzMEMyMzk4OTcxMUU5QjU3RUQ1NjY2MDc0MTYzMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9y
+                ZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PggXCZAAAFYHSURBVHja7F0HfFTF
+                1p/btm8S0jsEEmroIII0KyiCXRFFERWxYVee3afP3rBixYrtQ0REFOlNpHcIJQmppNett31z5s7Csu5u
+                CpuA7+35MSTZe/feuXNn/vM/Zc4wqqqisIQlLGEJy3FhwsAYlrCEJSxhYAxLWMISljAwhiUsYQlLGBjD
+                EpawhCUMjGEJS1jCEkpgVFwnfRGF4ZGKGKSoCpJxYTHWMgyDZEbEvwtIxkdZBn+Oz1EZAem0WyOH5OaK
+                Khs6FVY4MnOLarsWVbk7NtjdVpcoGQCy9TrBFWXia9NijQVdUiL3J8WaczPijPkcayBoDteVFTe+L4cU
+                hUEsq+Drw0MxWsVUGXH4riyHjzPsST+nEO4vYQlLGBhDCYwGlsFncKjW6TZvzik7a9mW0nEbD1UNzy1p
+                6F7nlE2iROgr+d6xyuHf8dcwsOHv6zgUZdQ1ZqWY9wzpGr16RL+URQO7xK438Bx8FblFNQyMYQlLWP4Z
+                wKhn9PgIi/Iqajr9sDJ38oL1RZP2F9u6i7KKBIFHAgfgB2hGK+RdOfw5FA5AlUMEJBUFIUmWkVHHop7p
+                1q3jByd/PeHMjC/jIs0VEoZgEZ8QBsawhCUspyUwciyLOEZFZbWOxA9+PTDjy+V5047WuGIEDFL4EAY3
+                rApj4AJQZAkgquR/Ba6HfwW1m8VIKPAYGDlWux4LYMohnmeRgIFOlDAU4pM7xhkLrhmZ/t4VIzNmdzCZ
+                6lyKhIjpNAyMYQlLWE4XYDSwHIG5b5bn3PTivL1PHS5xdQS2x2NgizTrXMkxwpHMpIi93Tt22JvUwVAU
+                YebreA5JmOsxTqdsrGpwx+eW2jL3F1RnHyl3ZJXXumNd+KheJ2CgxKCL2aNR0GPWyBHglDBLFN0S6p5m
+                2nPn+J4zz+mb8guo15IkhoExLGEJy6kHRgHrvIWVdemPfbpp1vwNZZeCyhxt5eQzu0evHDModcHo3ilL
+                02ONeUY970SUKyLCEwFKuROuK2PmV13vTthxpLrf4o35l/+xtXxcfoU9hed5ZOBZomKbDDyKNOoRx4Od
+                USHMc8KQhDkzLu9zb5SRrxclNQyMYQlLWE4dMHK4bD5Yeua0WRu+2Z7X0Ckl2uC6bFjS3BvPy5o9ICtu
+                IyJnEMgjLA/shTyL/8NgKmPdF8CLx+qvBm/4eqCSA+IR4GRRRV1D3I/rj0ya8/uhO/YU2boaMYPE+Ih4
+                jkEdrAZkNfLkPIfLjfpkWP56fFKfG7skROd4rh0GxrCEJSztCoxYYUVLtuVffMvrf35TXidZLhmatPjh
+                q3s+MbBL8hY4x61KBAjBw8wSgGQJR+S9r0P/ZwloysTWiJVl5BYkxKoMZqMM+UadzRn56ZL9d7y18OAj
+                NQ1SpEmvXcVq4lF8lBEJGAPtbhUldmALn7thwOXZHeM2iyForPYCxvQb/m8g/vEkmUH+LnZcZuBSHaLb
+                nYnLw/76Bi67aT2aE+x6DS3+BCwb9+FSHMJmuguXcwIc+xyXBSG6z8W4TPXX7XF5AJcjIbhHGi59aekK
+                XQCXBFwicDF63a+RvvdSXPJw2YfLTlz2hrA/wL2h/w3ApRv9Ow6GF1XpVNoHq+j7PIjLdlw20XqcrDyD
+                S28/n8N9X8NlfYie80ZcLvHzeWPBF1feEBJgRIwOLd1RcOFV/1n9i1HHO1+e0vfeied1+QhGlixjFogB
+                zYXVXgMGQxjpkr3RpJSUpsuFpamyrTaalVS9yvISFxlRwabGFekTkwtYc4QdegKH/3MyMgZGBf+OAZPl
+                sQrNESV8b2FF78fnbHvjjx2V51qMHBnLJh2PUmJMJLzHgVXrOCsqee7GAZf0TI/bLJ1kMDvPMO0FjGb8
+                Yx0dKP4EOsiDIbgVNOMaXIYFOD4Rl++acR0dHaDdgpzzFC7/DmEzzcXl2gDHanAZjMvhENwHJo2XAhzr
+                h8uOVl43CZfLaRlEQbC1AkD5F50M4H05Wvh96G9X4DIJl6GtrItIAfJ7XL6mdWqN/Ekna38C7/OMEE0C
+                b+Fyt5/P3RgY9RgYT5JLYTX4r5zSs8Y/s2JZRrzx0PszzrxpQOfkTS7VhRmfitmbgUwzjUfyM5QNm84W
+                V626UN6b0x+VladwDfUGBavOjIqI6oww6KEIo5NJTCxCvXpt0Q8fvtgwdNhyJT2lEK7BOx1IxOqzitkj
+                jyGW43TILYm6f3+16cV3F+fep+N1ZKQbdCxKjbcis55FLhcGxw5c4UtTBlyQkdhhPzDRE4OCWoAiLNde
+                wOhhcmuRr+FVEycd+LtP8lZXBwG+X3EZ18zrwHm/NHEOMKteuNhC1Eyf4nJTkOOrcDmPstWTkXtxecPP
+                59CR+uOyq4XXi6Xs+RZc4tug+2TjsqcF59+Ay79w6R7COhzFZRZtt5Yyr2VBNAHPhHhdCOr4SgByUY2B
+                MYaR1db2G00lzi2r7Tz64cVbe3aM3vX1QyMvjbHyVYosI5XVIwlCavbu6ev87MsZ8i+/Xc2WFlsYfAw8
+                JYqgx0DDkpAaQEYGbImCoAUrwvdFEcFyRTkxqYobc8H/mW6e8qY5K2u/iDUKURYxMGJwBObIaFrfJ3/s
+                nf7onJ1vIwjmwZfF+Ik6xUUgPWaQdlFGPVMMO1+5ZcioSJNQq6qtszcy7ccYPb9+iMutAU5bRNW81gqo
+                aFsDDAg3nZmby4agLhc147zJuHzVTsCIKEN96jQCxnEUMLq0UdeRqJbRHJU2Bpf3cbmqDbvyOvqODoYQ
+                GBEdEx+3KTBKqrN1IAFeaKzdTnhy+VpRlpgfnjh/TJRJqBPdIhJ0mMk1Nljr3nznKeWjjx9gK2uQkpoq
+                osyMvWxW1k5d54xcNSKyjmE5GTltJrmoNEXKOdAH5R3ujkqOxvOY1akGAwRDkoBH1W5HSkxsHXfT5Fnm
+                O+94BZlMjYrsRoyiIj3HkN6gw2xz7op9U+58f/scSYL4RxWlx5nre6R3aGAZhS2tdyWO7BE1b+bVfSYb
+                BJOzNWvETwEwJlEVNTbAqWAj+bmVt5lBB6k/gQFzRzOvAyxwWzNNsBuo2q62EzACeF2Ay/LTABjvpSYQ
+                tg27TnOBMYX2mwHt0J2LcBlP1exQAWMDVfn3tBUw8hxquXqohWJz6I352x8tq7Un/v7CmMFRJq5OccsY
+                FPXIvnPbGbZ7Hpojb93Zkxt25nbd5Zd+qTt7xGKuY8YBjFiyzs/13GBbrqxIcG7aOsL108/XoxWrxnIN
+                DXpkNiEmMgJxDluk/MrrT9atW3+B8eUXbtF17bbHLTaSNdLguZaQiCad3fOzOoccUVRuSz9/QNriTsmR
+                h6xmXR2uLVtbb0/cV1h1RmWdOy411lTYXiB3klJKWc9bAY6/iMsfrbApAVuYGeAYGNWfbcG1bkXN90uB
+                eWA4tWu2h0Dn/oSy34pT+B5nBADXpsRBzSYitf/A0MGMAelPoi5gP5zfQlB0UxOISNsUtA1TM7+bSm2f
+                I3ApCFF7WunEOIq2T8iFcbXC+aJjOLS7sCb76ueWLfv6kdHj+neO32zDbWfG76tx2bKLG6ZO/5FNTT4i
+                PPrgY6YxY3/U8YJEPM6Y4Sn4fhDryIC9TsWsE+ZPlxNJsKIFsz5INUFqtHt3f+f7sx+Wf/5lIqx6wTox
+                QVDVZkNybHyV8PKLt+guGP2TIrqwOs0iA88TeyfPuGn/4Y5NoSAe77dKliue3mjoxRgRBZ0NQToyANxL
+                LbzF89Su5E8eprNpcyQaaZ7RltjKwKY5sZ0Yo0d+oPbUU8EYwc75ezOZYi5lt+B53Y9LGS71Xt0YADGS
+                tjeo4+D8GYJLH6Q5UJpjY4SJYmoz6gIMbyGtC3jAqykwshRcAfAGU3PO2ahpwz1M4Bci/5EWLWWMHnkd
+                aZEBIWeMrEJCY1pWMLyhV7/b9sydE3q+2L9z3OYa1Ya5LQbFXxZfWX/z9Hn6Kde/E/H7ogG6ceO/ZzlW
+                Ut1uDEiittA5IA1V8T8JKbJI+oExO3ub5d13ruXfmzVJTkgsRo12qsJDLI7drBQeyUAuGSO7iniwGaqw
+                NhviHwUKisoxQOS9mKkEcZKKG7khtpGe1dxyigQa5KEg6icAY3oLrpeBtFAXf5KDy7stuNY1AUCxFpf8
+                AN+Z0IY2tkACdrTbT8G7i6BmiaZAEUwR11I1GBj4HKR5ZwEoK2l71lKgPIA0pxyEJN1HTRMAjHfisqIJ
+                M8X5zQDFA7S9APQgVOs32i8qaB2q6btdSyeMcylzW93EdeHeN4S4fe+nanrIBfMsvmVf4Fi0fm/pSJ7l
+                3NMv6vWG261gBomZ9bqV5zbMfPRj02sv3my84oqv4KpuWSIOFAWSP4CzhDpKlGNRjMj/RAMgiTSgNI6/
+                5Bul/4ANtrvu/1pdtWaoeuF5yyKeeuJeQ7duuxuq6pBgMSGOZ0mQNwTxlNY5UvKLy/sdrXV0r24UEyVJ
+                xacI1UnRupweadHrkjuYiwB4AaPVf4Q2TQRYxLfIf3hKFFV9b2zmtZ6kqog/eRxpMWrN6gq4TAtw7Edc
+                ltA6+wqoYbcEYaxtJa9Q9rOjHe8JdtrMZtTrqVaYQ3yZ5nu0BBrQAM5PN3EdYLaTW2F2WEOB7x0U2FkI
+                8ijVGOwhbOMPkOZELA4pMMpMy1Rp8ER/v/rw9beM6/YWxyhIBBX2aGmq8z8vv2me9fr11nPP/uWL5TlT
+                h3aLWdc1JTbHJbmwuswiGbM6gcOQiHVnEcLBGZJNEbEqh1Qdp6m4SMumw3hAk7BIEQmpaXnW2W9fYVu6
+                4kLDNRO+0gtmtyJKSIg0IxO+PyxF3LC/dMzizcXT9hQ0jq53uKIZfF2GYck1idcb1zXSzFcO7R73w8RR
+                HZ+Nj9SXyugfJdCpLqKqlK9cj8tHdBYPJgPpuf4E2Ma8FtTnbKrK+ZOvaF1KcEn2c/xGah+tayOG7c/m
+                aaZMbHiIB2YgsaCmHVj/ou0QSgkUZjIcBY5XBdmMy5VICyJvjbjpRAnB4JcGOCeTqt7ft/L6Oj+fg4Py
+                Q3rdkGXdZgWytqR5Rc8IKOdIbbbZKDQM6Rb3pyRBJh0VNb740ov66699R4dBESu0qKLWkX7LrPU/HKmo
+                y9DzegyIwTQJDH6gAgN7IynGePz0oK47jz2lgt+1PjG+tMP1137KCjpMUiUkY0AEUDxSXp/5+Oebf3z0
+                s12/rd5dfXmDU4qGdGZ6DLYGgUEGPYtMeg4Z9QJyuFHsos1ltz/y2fY12/MrhwMAt8SEcIolP4gtkaXM
+                oylP2rMBGIVMB2lLOlYg1XQPBUUAqK8DnJN0Eja/pgSCgN8OcKx/K+yxrRXwhqcFOf51G4BiMJkU5JiT
+                svjGENznjiYY56RWXncjLl8EOHYRCs2Ch+MDyiXJqLkFZPWe8lEXn5H6I0EyXofsS367nIuJroi+cfIH
+                nMOOHE4buv6ctLdFUTGc88jvW95ftPP+ijpHvImFRYM8EkjsYVM6rErsmAQoqdqtYLVclhwkHZkRg6co
+                ibqvlu+9/8531q9fs6vqMp7nkA4DIrBEADGwJUqYKWKlmazDVhUtRJLH/xVVOLus3F40ySUrxFXjamY5
+                DeRNpDk7/Al4fKcE+e5YpBm/AzG8v1pQj6wg15pDQRHkEzrTBwLWtoiY11F2HYg9g3318nZ4V5cEOQZ2
+                uofbsd/oqS0wkHwTQhNDKbWroiDMNbqV1wZH2KEgk/6ZIQNGHoNbc4qAS6NbMTndsrFvVuRfLkVEbqfN
+                4Ni6fajxrunPuwCCMDODQO3EKGvVVw+PHBcfZaiYMXv7a2MfX7r90c//enfJ1sLxR8rr0rHqy+GrEgYq
+                4KLH40PHsIgqvicI4wFKDGg8D9sisKA2n3Pvu+uWzlpw+LV6pxqnx6wQ1GnC7GSVrIyBAr/D55CwwuaS
+                kFuS1AGdrb++cGOfc2+/OPsuxMHCbXzXZpbTQMAO9UiQ488E6HQ8ChyCU49aHgR9M9LCRvxd6xuvv3Oo
+                3SoQezunDdoIntVGGVBDgHNg4Ka34XsCcB4S5PhcamZoL4H11xkBWcjJB0v7ypdBuASEivVpJbjXUBum
+                HOA4TMoRIelEqto85wvHMSj/aEOXzFRrjpHXSyquh23d2rP4vr03oJj4CrcsEm4nYJbmxuyyS1L0wflP
+                nj3q4U/+/ODH9RUT8n/JvePzP/LviIzg6rskRhzuEm/dlxpnONA52XooJd6SH2vVFydEGisteq6RZ7Qs
+                OQLjVTf8e2l1Q+p7v+5/+vdNpVNVhmMg5RhZj62ox7ZBADKqyFqSWyC1LoeIcNXR4K6xi648K/3VPpnx
+                KwX8LRc4hhAxPyLmn+OEAYEQCgjOneDnWAplSw/6UV8GBbgehDy0JBEC2DgnBzi2wM+An40Cew7Bk/pH
+                G7SRiYLyQ/T+vhJPwWAsapuAA3gPHYMc/6Gd+0x2EHYOoThbQny/Q5SBnhHgOHjfV7bwmh4zz0pqDnnU
+                zzndqVY19aSBUWpmvwA2V1xVG98lJWqPSiZlhXEVF3eKHHfB/7FYbVW90AU80S5FRnFR5qOf3D/6sqFd
+                99/72rx9z9Q5kKXRhiK2Hqrtv/lAbX8VsznwJht0PDIbuMZYq6E8NdZQkBJtyEuM1h9JT4w6kB5nyo2x
+                6is35FSc+/Gvh544WuNKNRt4kosRtHuGVTHwYSCEGEmI2qGPg5ktrrOCBmRF/XHFiI6vn9k98TcIZnco
+                mn2aOHsgU7gsk3yNzZLTB0CBNZ6H/AfZAth8ho6vo7YEYYRgt2xp4DEkG0gOcMwf81iKtJUYPf0cA3W8
+                RxDzwMkKeCzPp3X2lfOpXfU/bXDfjgEYNUgZal/POEiw5B5b28hStCkIMHY9yWuDZgTOv6F+jkFs6wrK
+                WlsPjALjbh4mYPplMXDutNioEmCGYllZIpPQoZSJiKhT/hYkriEIMEeI2b59fJ/Xh/ZKXPnC3J0vLt9Z
+                fr7eoEMmPSL2QHIuBrZGp2xpcDosueXOzooqjYaNsWALA4PA4fvy9ganYoLciyaDQL4DCSoYOo9osZUa
+                OEoSIupzvy4Ra64emfHa8OzkBTys2VYlsrqGeL4xoApYNVZlBf3DPNMe2U9nRn+zpoHOqOO8gLJzgOs8
+                RdXfZptecJkeZICt8/O5m9oaXwugcoIn8742bKs76QBNC/D8EH8X6pU4yUGOQWhNXTv3l9Qgx/a1YR9t
+                TX2aI25qzgG7uL/Qs7fosQOttzEymLU1oyiKxFuM+nozB5m3VSRWVcbqOnfer4V7M8eK6pMQVsFgZcOg
+                1K9z3NYvHzt77PM39Z0RqWcrahslyBWhOVlgnxi69YGOV8mWBWajDukFgVyvwaWaWFi8CGE/CjqWyNZj
+                U5RxsbtFZHOKKDPN+NdT12df89rtw0aP7p26AL7vVFTCwwE4DWSzLJUw4H+4vETVIH9yEVUTLSiwtw5W
+                03zdwnuC4XxwgGOfosCrGsCmVhvgGIQPxbZhOwFDuw3597gLFLQ7hPiewZwLpaegrwRr3+I2umdJK9un
+                ubIvSN+Oov1R12pgFPF3myoSLi5Z0BlYzqUqwLIk5BJF3hifVKZTWbIToKfoGB2x9/n2QgdsUIWx7NYL
+                e73987Ojh106NPF7u0tEdqzbglrrKVpojErshlqQt6rFNSqadxljIAZCmYAhZMlxuhQCiF2TLNuemJR9
+                wwd3DxsxZkDH71mGUUCdh2sRGym+uV49kdOSeqoqo3pXIFg5vaQ+AGP0yLOUpcUGsNf8C6EWE+ZAITrg
+                ZQ0WmwZpqP4vyKCd1MZttZgybH8CHva3Q3w/QxPvrb3FEuRYbRvdMxgrNoboHh8G6VdnoaYD2gMDo8LA
+                fijBi8rwyOFSeIaX7RImjKyMPzWZbbJeZ3dj8PEtSgA+BuqvE4Nq58QOhz65d+Q1c+4789KuiYa99Ta3
+                thJFVY8VAEgAQPK7528ARep9trslVO9wo67p5s3P39Tvmo8eGHHmhCGdv9RzvAiKvSxi+Baxao1/gsoM
+                9kSwQSqYmsqSxMmySDR5fA9OVhRWi6UMXk5DgVUEywIcG4QCr0yBzrSyhfcCr+aEAMcgMLyiGZ04kEH7
+                tpOZ3Zspj1F1359Afr+pIbxXsM5yKgJi+SbU0raQYIleORQ6iz2YSgoDHANb/JhWASNSMYw0VZALP4VT
+                Mep4O4f0GE1ZVog01bGsqLKMG/29SMQYBerx8RAcFXny8rgB8DCAXjS404IlL44dcNOYjNkurAprLFBT
+                vzVw9CoUMJ0uCdVhQMxMMu34z5S+N8x5YMTwcYM6fa/jOTf0OQUj2NHK2gS7y21meXx3jiWgJrOYZTIy
+                +ckooqCFRzJIlBQeM0tWZrQlA8HKaSgqVSda0rlh1cfjrbjXFOTf2dPccI9NKPB62p6t7cAtEAe1SwVa
+                9fIG8u8gCjUoGEJwfT19F77FiPyvyw6WgUY4BWAcSvWrPIipBNoCVoQltLjyqtz0RA3AwjH4TL3sVAHs
+                wRMsGOwKcZz4qY2qMUbwFgMtk+naZ0bVJlOwJWqOFxltPnh06L78ul6KCrGIDA3E1sAQVF1gh/BTxKwP
+                Vtr0TLfunXpe5hsXn5k416w32SUy+Wj7R289dHRgeU1DXFZK1H5TlLVSBQeLCm9IRbxC+wu+r+SS9Kye
+                lRgWwNgpqLJJFSC/xD/T7AhZUCAkZUYzz3+nFUZpCwocPL6Bgp636AIMBogzGx3gOhB4vbAd2gpMCP7y
+                UEag46msTtZL29DG9jV4h+f5AQMwjYB92TcxbGWQa1lPgfruDjE4LqYT2/1+jqXR8XFZi4CRa0a6ftAi
+                eYGXAOHAWaIwWJfW6d0so/ub7Q0Cq1nNpeKXK7NkNQuJSUx++YcdT81dWXiLKDOsUc8RuyLJ6k29xyQj
+                GVaFRUlG3VKtB284N+PtK0Z0/CzKaGlQSd9lybS0ckfxuX/mHB3eKy1i16i+GUssJn2jW1Lo+ms8JcIi
+                GpU7RuIdNrvZaOHsAp4sRUkSGF6ViArfnIY4PQXsiZARJamJ88Ag3polcbCKI1BA9Mc+nfx1FDibd7DO
+                BsHe/VDzE5q2VsBjCaE6/rKfQ1D2f9DJLy8LZlZIokzmZFRq8Op2CnDM36QUzMGS2EbtnNjKieNkTCUw
+                qQ30c+xSShzeCgXd9eGkjAIgShRjDJBYRXVziuIzJhiSIAIFgEVYyueUZf7LVQdveG3e3icPHXV2tBoF
+                ZOSpsg3OFVCzgdVhhuiW3AiDXc7E0emfXHt25kcdzEKtB75cMssu3Zw34bdNRROSYw2Fk87r/mmnWN0R
+                SeWRSB0u2i6EEOwokgw/Wg2xWu20WUQmugxWZTsluzmGUZ1GuG9T0MifthuoAiN4ohkqLQBoazYSChSi
+                Ax7fH30G/a1NsIVgfXF6kHuFUuAemwMMXmAdEAe36CSuH8wjC4AWR9su1Kq6FICJBdsUrGsbtXFWkGNt
+                4Zl3UlPJ+gAmH1iXDuFkzQpmh/jqZolOYBW3S1YlUUI6HhLNAn4xxwDQ4yRR/QAixAxCEoqNB0rOfHbu
+                rhdX7q4apRd4FGn6++QGTM8pulH3FHPuzWN7vnPV6NRPYoymepmQDZYwvPnrD18zZ8neaUlRprIZl2a/
+                1D8zfjPJ1aPYMSTzx0ARvNks3acaeXL2iJKOU2S9jhdkEo8pqUaGg/BHpVkj9zSWz5CW725kEBvfJ624
+                Lqw/PSvAMXD+eHs1r2olKHoE8js+jTQvdlsKMCjwsM/3pxcgzVE0GLV+2V4BbZcoP8ciKTP+vR37RrBY
+                xX4hYLD+JFiG8Lw2ek4InJ8ZgBkaqakE+nJjyICRYzDEMKqqQAQ1z58AfySmEJLM+iyvY8kyPQ7V2uwd
+                3pi38/E5f+Te2ehi9BFGwYdRgkNGIY6VTomGgmljur816dzMOTFmc7VKs6nb3ZJp/rrcie8v3HcPZpX8
+                I1f3ffaKs7p8C9+VZJFsvCX4qL06SUSc7OU24VjkLKuIVe1uHoK+JcXG1tY7IzOSoiWWYdE/XMC+9HkQ
+                YPwGBXcKBGNXTAB28qmPmnzjST5DFAX3l9uhvX5CWv5Cf6nBktHxVFatWQMAqjQsixsUxDTR3sBYHcC+
+                CSuPuqHQBnonNAGMu9vwWd+mphJ/y1BhjfYrdFJU25QEySSTDYd8AVZgtb25F2w4dNUL3+15Zk9BQw+z
+                QYes+hNjHEUIzna5UUa8qfSm87Peve68rh8lRBjLPWOx1i5Gzl978Nq3f973UGmVI2nGJT1eu+fSXi+a
+                DazNjccmK7F/G7YqAXLMEwUWKTqdlzmAR1J1daoQG1UGId42B2NudEomjmEU2NmwacrIn+7gqLTyWDBb
+                VqBMNGvQiUvbRqDQbK50K+3cjnZor0foRJLt59g4qpq1xh6mUrUtEDACs34SBXeKhNrUAqFK5/k5Jngx
+                9VDJ+ABsmSiFSMtY3tamkkHIv819Op0U60ILjBD6omohOBBX6MJMjyW2RwpILEOyN+aWVmc9983O53/a
+                UHwlwscjTPpjPcYDiA6XiFJiDOX3Xtpl9g3nZXyQGh19THUpr22M+2Ft3uTZiw7cd6C4IfWakWnzv/vX
+                qHFdU2L3K3iM2yQHybbjv1tCQDawSN/PZc5+6FA36/hx24HZllaLaRYL72YYF653c3DjtAdGppXHAgmw
+                t0Bey498/ob1yPWo+d5GK/IfWuJJZtoeiRYaKfhBGJG/DaaAXbQ2yQXss31PgGOxVOV7sB37xsIAwAhy
+                G52MqkJwH12Q5/awxdw2ftYSqgnMD3D8g6bAmW/5qNOAkWNg43vFGy8xS4RksKLh49/23vX2gn2PlNUp
+                scASvdVrCLuB4OzUDsaKSRdlfDplbNf30mMjCzwaS0FlQ/p3yw9M/XRp7vScwsaEoT1i98x/ctRdFw3q
+                tAC0N7ciknXbgfCQYbTQIFnlvPYuwPwQg6h7y5ZBAsPKvE7nBrvjwZLKzKy0yL1uhSPP1JQY0f+UwOMG
+                CnouRH8PrXkOtSwhwxRcXghw7E7UfhloNlL25s9bD0sFW5tQF/JBQthMICcEgAcE5y9up+cEkIBN0Mx+
+                jiVS88XNIWLh2U2YMNojyB3u8y7tS77SEQXPfoR4t7MFIVsBUnTpOI4Ecv+x7chFL3y3+9+bDtUPNOp4
+                ZDEKPiqzjFJjhPIZZ2d+MuWCzu+lxkQWaaRBRbuPVGd/vuTA3T/+WXp17lFbVOckY/W7dw2678bzs2ab
+                dAYnLEOUIZ1OgPAiqJaEwZql2yEg1cueDLGUbqfg+PW3KyJvmfY6i4HQhlxCZYMr/uz42MWyFusdlr+r
+                koE2rZqL/m7AbqmXFRjnQwHsXqCWQ+jMX+30rK9SNnV+CK8JXlKIn3stCCn5mqqxf7TDMxbSyWZKgOMw
+                CR6m4NlagT2JguX2dKCWr88/GZlJTSW9W/pFXlVaEGdJwQPUZW1lC0tsiQWVdR1fn7f78a9XHLlFVlgU
+                iVmiSlPfQNIHWMuc0EGomTa286c3X5T1dkZs9BEP0m4+WDb4k9/237Voc+mVxVWiKcLMIaxaf3D/5dnP
+                p8VaCiTMSmErA5YJVCWGLBMkeRhh+SIkiGBx4RTiCSe2RQyY1V98M5VPTirmk+OO8siF9h8oG4gfnbfw
+                rCgpcjMVTe5/CRhvD2Ij+iwE1we17XvkPzyHpapQewEjzKBg29yMQpvQ4iMUPLtRB8q8n6WqbHPXUbc2
+                KdSLFIgDKT/A+NMpgy5vwXVhNQ9sY/pME4Pki3ZQo/2ZStagFu7FzTMtGusMZMPmGmxOS5RJV1/d4Iyd
+                vz7/mrd+2vdYfoU70QoZcRjNyATB2jaXiGKsQsMN53b+/LZxPWZ1SbAeQnSlypq9R0d98tuBu5dtPTqh
+                skHF+KqiCwbErZt5dfaTo7JTl8M5sFc1rFjxZangvoEtUzmVJ8cgjZjiY62SIG0ZrgPH65Bjx45BruWr
+                Lo5697VJElbFIX3Z4o2lEy4b1vkbBZBbbubkoPufAUVwoowKcAzUv/0hBI5bAwwmcPpAbGZBOz0zTNZ3
+                oxMzkJ+sgOMG0vH/HOQcPTVDAJODLSZ+pe3bEICaQBLcmFbWJ4eC4zNBzrmNagsQcQCJh/ch/44weGew
+                fh6WckK29H5N3Bs89f8+BX15E+1HLYp04EWh+aMdluYhWWbe/uGvfy3eUn6ZQ2Iii8vtCRwPzhXtOiJm
+                X3aXgjqYeft1Z3f+4taLsmZ1T47drx1zo5Xbiy769PdDdy7fVXah3YnAd4w6J+pL77q060s3n9/tPR2v
+                E0miCFU+ZponUYgKo3m+GVjrDD5llsYnqoHJLYBiUUFGzYMzPzU+9a/7VHNUg0GV0OZD1YOwGh2b3Sl6
+                F7BFlUVh+fvg4IKAWagEPKXg+DjbzzELVe+ebsfn/hY1b+/llggwQrClNrVdbCZ91qfpZADlKAVIhoJh
+                GmWfJ5O+/wVqqjgvyDmplDUCoEDMYT41lTioCSCGMstM1HzTO2gAJaeoP79Gn/eCZgOjW2kZKvAsL902
+                od8bB0o29F68qfQiWGCM9XHkcmsrRxKidLUTR6T9360XdX0rOz1uF3zH5nIZf99cMOHzpYenr91bPVoi
+                G00zGEyR++qRqZ8/cEXfZ1NjIgrBk+yWJCQz4OnGBE3iEIvZHKNnYfEKyUqhMsdXtQRBcPzPgFwH9/es
+                u+Wun/XXXPmhfvjIZbyqXeS9n/c+fP35WR9A6KLKKGEYPFHAEB/I4QA2qN9CfL8PAgAjyE3U/tfYjs8P
+                K18gCLhbCK8J6eGigpgnfCUdtd2eNDAIIM0bOH0GNsN41jmIKaC5Ag6Z/zuFfRoG+TTKHuOaZ2Nsaavi
+                W8RF6cvmzhw5bs2estErdpWPLSm3pZnNQmOvtKhto/okLMlMjMwFulfVaI+aty73+q+W5k7bkdfYGxLN
+                ssQOKKPz+sf88eg1fZ4clBW3Ac51488EUbMuwW4sJAQcklG0MA8iw0HiHAHZFy6c5Lr/4dm6qTe+H3XH
+                9JdltxPpdDz6YvnBWxSVYc/pnbYMMn1zagsc80x7vUVtvfkpkokocAza1yj08YW/UHaUHgAgLkHta7Cv
+                o4NoBfIfTtRaAcbkWbp5qgXUWljPDiuXRrfhfVQ60bx5GjzzEWrWaFZf4nWtGOwkdyIGuZG9UldC8T1+
+                tKY68fs1hZO/WJp724FiWxdBgH2ddcjmcKHMFGP+A5f3ffba0V0+4xhBkSQXBhwJIzSPGFaAPa+QSjLr
+                4N8BHZVmZNQiu/jpCG658/K62Wa98xj6cu5k/oF7X7b+65FHGFlCAs+inMLqbm/M3/343AdHjoOJk1GU
+                FmJd+zhfrKwD1clmxDPtvvECH0SNhPCFuW1wTxu97swgav3X7dwOqylTDfUWp09S1gJOjt5t9P6a20nL
+                qS0RVHdIsKAPcV1gnx+IOvj1NNKGoJ+Np5N/8IbUI7nlyalJijCEcsuqskpqXb2SOxhzwS64v6C2x/Id
+                Jecv2142rrDclQgMzWrSI7sTAx8vuW4fn/Hx/Zf1fi4xynpUwbwQQng4SYcUg2YzdB0tT3DM+3GKc8nS
+                i91nD19qGnvRD7qsLntJMBCJ/NF78VwtyJzhGCQ7JJ20fdcg1/yfJ4vffDcVuV064zuvT9Nfe+1HsDKH
+                5zhU71SsN8/6c974IZ1+6NExfjesoG4Rzqnt55Mebt2D1jX0wuBoIit4WkKYT5LvXhBkwMKmVjlt9Mif
+                Umbhz+A9gqq2vvvJsG08ez1J2dQZQe7TGh0CbI7gwILkuOAxHRKi+tZQM0dL7Hh2Cv7fUDYF7DzyJOux
+                B2nJTGBdfmtWDbEt/LylAg42WP/fKVj/4UUG2FbL13TAOmir2WD/9NudLxdUi1kmnpVLqhzc4dJ6svG9
+                xaQjoTNAB88bEP/HQ1f2euaMrDgSfkHCYwBoRJLJFrkOHeje8M2Pt7p/XngtW1iQBHGR8sa/hjd88PFM
+                rnfvTWx27818j647ueSEEsaob0Dgf2ls7CAdKcyQcg70VbduH6ru3NNLbaxH6PxzNpieemKGqW/fTQps
+                kcrCmmiVm/7mqrkqVqFnXpX9hCjDtljNmw3ApEmegoVlj+3jpbFydjTMuhctr++LXIrQEnAEihmIYkvN
+                ANWp1Aal+lGJPmjDR4ZAaAjIvTRAvW7xA4zuAM/qDFGdXBS4lgUwLcio9YHKAEgfUQCBpWvnUfCHdctg
+                4zU18X03BcJ8pK3gWIW0kJTW7t8C14B17hD0DF7mc5HmZQYPuLmJ/lZF39+fSFv/vQadXD5LV4D3Gqqd
+                DCupqWReAJZMTEWMDbJms7AnCtjbWmZIE1gGbc8tHzbzsy3L3BJr0GNAq25wo8KqRrLqBBLUWvWo7tvH
+                R1wwqHPSRkkVSRgPIDFPPB8sAcbGNWvOdTz/8svsrt0DWMmNGB2ur8CTpSyMCzbNciMVX1vlsXrN0RUt
+                ogiJFSFhI2LMJqT26beHnzr5TePVl33GczoJdi6ErD4Ot2K8450/5yzbWjJh6fPnDOqeGrXXLTZfRSXA
+                ygmkrmaufYBxxj33IwGr0YXuOPRnY3fk8cE3QyKR/1Ra8FLL6GAKBoyZAWZm6BmHUNuuWIC6JyH/fjWZ
+                3t9bEilg+Z4vUsAIWFeFxL5qyZSbYa5IDQIO+Si0W4+ChzeBFvD8Wr1YNDxXI32HVc14nycretrGSbQu
+                4AkXaLva6b0rKEOtDuF90wJMDE7Usv3Pm5KMABqKXPDFlYeOASNsNSBjUIKYvuZq1tCxTHoeLdtWfO3L
+                P+z9CrE8Cw6W2kYXOlrlIOGBkiyjGAtb/vr0wbdcODBjoQM2MVUYXCOVOGLIdqYky7eC3Fs3D3MsWnKV
+                uHbdBWx+YRZjcwhIdiGEvLZKJSZFDJJmk6qkph7mzxi8ihs/5jvD4DNWI4PJhVQJCQDyrIABui7l9lkb
+                vlqxs3z0T0+PHHd+v7RfVUVqNvhDFnERdvCCkCZZQaZ2BEYy8TASKnAnoL8au5F9dFh0+nvQIRM7IorA
+                6VlXSHgSgRl5d2MhKnFHo2I8+bCMghikorCEBQQDIzoBGCXMzDC0ISPb/ISsDN3X5fs1OTNeX3BolgGz
+                K5ZVUKNTQWXVNiRiYHTLDGzBKs24pOsL91zR+zkzL7hFzB4VlbJH0Kx5nlwH5m/J1Whg8kozlfy8rg2H
+                D3YVqmsSWEnhVZ6T5ciocmPHTrlcVsYBJj01B1kibPAdHgBPUZCO11KardiRP/aeD7e9d7CoPmPOfUOm
+                TBzd7XNVbe7WKAxZBy6LuMDG2KcIGEF0GByPnObgqFIGBgADjiOQetmEVC+4AS87d4pDowAULZwDjbDu
+                QdF8PanzTntntNeRrmVjCjE4qgih8ErT/wJglBU36cwGDAZQWtoNvlye88DshYdeUVmG0XEMsosqqqp3
+                IYdLJowQlgaOyo5f/djEXo8P65G0Br7jhD2lcYdlIHAbwyJo2ipmkjrwSlOF3xumvWslY3YogrqNVXo9
+                tZuW1dqSZi3Y/ch7vxy6B3YHfG/GoKnXje45RxSbz4S17DxuojUoHAZG/tQBozc4brJ1RW6FJwOYO03i
+                LwFsgNlGYhbWxVCCUnWVpJ1L3LEo35WAYoR6/P5kzHzjULVkJeB5KkKRvEExkmskf3vaEcBxDwZHPkTg
+                qLFmlWagYvE95DBA0rbwTKRt0Q/Iijv8XlUvjbY1E55fYNS8vRhoeN2x/f1geZ2O7NUSeAZ0SjIy8Bxa
+                uDF38svf73vf5lLMBh1L1krXOmXUaHdgQsciJ/5dr0PS5UOTv771oq7v9O0cv5klZi0JlGzt+gpzbANW
+                DH1kjxiGciWWutCJeZI0rmYmKKtrSPhh5eHJHy7Ju3d3fn1Kxzhj3Vu3D7p5/JCMeRLsVS2zAe0BEG8O
+                iSdUugQVMpCxqtbUpwMwIvqCgYXVyhZ00JmCKsRI8llrGSQMXoZRTmrAiiqPkoRq1MeUh6L4RlIXT+eH
+                usHmZrCxGQwAtyqg3Y6OKNeZhFwq324MEgYh1DOCs2FQ3I1B0UZA0Us3CBk4wnXhec2sE/UyHkEWzJ4P
+                uFJQEZ4UoNuG8nlVj4EJUgA24z0SGPLeV52+l/acmOKFWtTdUISq8ASZ50pENsVAJo3W1MPbTsxQbg54
+                kGUoJu0PnzTi8VLgjkdO4sBs/uTUbGB0Q2IG/CuHz9UHAAeHKCGwL+rw8U0HSka8NG/v2/uONPY16ASS
+                1MElqVi9FpHolhH4PoA9RpgYcUR23NIrzuo0d2BW9PqOCRG53DH4lelPBWkOVQad6ETCqnq9LSYnv6b/
+                os0llyzeVHrFoTJ7kiRLaGTP2M2vTxt0W5+M+K2gsmN0w8/H+mlcBavwHJndVcl1DBg5AGaVOa2AUVNH
+                FTK4NJDphFlZDGqQjc1ikJ6OhOgUE8nbcMcxksHVGiAAsEnRVaGhlr2EMXqDTQDjBAENm2xAJWIMGRg1
+                kqVFzMGjmjd1Pjyndi5oP26ULFQRm6IvKIYSHOG6MEl0NxYRRgr39chRMRrtwNeuxs8rhCA2VUsMjfsj
+                6yIDHt6jSCYbhbSx6mcShGfXs+KxrUfgPdgVPU3qrAadYMkOnl79pCnGp2X0Z471LYC+TH0pGmg+QNqW
+                3B+DYi7uA4edycih6Jods+vpx2b87Em6ahTP12jPpYJDV0JxQt2xesKTVstWtMWWRbQViZxz4rtVjyVT
+                VFsPjLA8z8BpacKORxIeB0aW0YBMz/Oo3uGOeG/hvqe/W11wl8OtCDo9T+x2oqSQnf8kCQpWt90i+U6s
+                hW/snRGzpXd6xNZenSJ3pCdE5FtNfLWZx/oPo6r4fF29U40sqbWn7s2vzd5b1Nhvx6HKQaVVrhQ72AJx
+                e8daWedtF2e8es+l/V+06nU2CT+PAssDTwBGrc7gtYZUZqzeTBpF+QcAo+9AhlAeGHSHXMmEQbJ+OrjW
+                kTgyi6bry5ERD1gj7lQpQiXumEloqy2TfM+3s5BC08z5ggQMzBSsMg+17CMdWm7BYnNvcAdVex8GIhig
+                gQaGp2bwDN5A4I8BeNTjBKGGqPQwcKP5BtQBs1nIt6kECYXzBkewOXrsg97PzjCelvn7JNEFD/xBlgN4
+                WlfIAPQ+C8DQhZ93C27rfAwGPKm7esI7Ur3y3h1v8xPv5QH8BMy8emJGCs8F58FiAJgkj4odMMjoT7g2
+                gFIcX4cG47oJZE0Z1fBUHe4zUagMlyopggCVRNT+431IJoDIErbd2XAURXMN5Pvl+D7w7uA7HjCW6KTr
+                Mf1AuwuMiN+tkdhzB5gPUecp42VzlrEWZCaT/BFXfJNqr0j6sQt1MZSiDN1RZOacJ5ytHpv8T9S04DNo
+                I7hHHu7zZNd7VTtfA1UG90f+2Lst+vLy1gGjAmE3kCEbq7GQdgwu6cBgp6UGU8j19LCKBd9o6+HyYbN/
+                yXl09e7ycU4MOHpB67ySrJKdAOEn5LuFMB4Io4Ed/uA6eszk9JiK8BweyaDuyirvlhSd062Q7RQYzE55
+                XNyyjEwCUi/on/DTvVdkvzCwi3mTjF86meEgGcUJwEjmMpKgQpKcuNUwm9Wb/nHA6D2YYQaEzg8Dbo+9
+                I2rAndUDMgAmFgyIGbQjgY3NuwPBdw9gtRzAkaRtU7UZHjoLdG64DoANdBqPWgzfi8ez8pmtAEXfugNg
+                1CsmtLmxKyrFAA/M0xcEdLgu+O6EHXQzFJJ6AZgexEwDBq2n48P1QFXrilUpYG4co2kcMmEvbLPrROKa
+                AGBwH6rEgFGDmQZDiQAAIACPN/PwBkXvge9vQoA23uXIQPvsaSewXwse4PDsHp4D1/e0u0wZLhyLxkAI
+                bZCuqyCMzdP2ngkRJhvRDyOGNtO2NGaOpV3xmDLgd8xbCHAAsBZi1bMWq6DwfNFcPcrQl+FJpoIw4OPs
+                SmN8ADQAkFDPZPx+9IxIrpeGJ6UozJqhjsS8QNvP30Z5HjDMcaYSVo18NALPpAjndMJ1yTaBicJOPmuu
+                IcijrUB/LcR1Bls9tEkWVusT8SQK4+cIfg7og3C/vXMmnxwwujEwQugMeIMVCdJ56cgcReIiiWVQJsv8
+                FHzd1XvKxny7Mu+2NXsqxlY1ikaO48iKFILc0KEUhQaEe/k/VHTClqaQ3QfOc0uwzaqCYiK4xrP7JCye
+                ckHmO8N7payG+rqc1YjhTYjF1ybAqJlgyayg4sbQqXasyjOYuWrrqv/JwOgLkI1YPQInzWFnEnlumFk7
+                648Stiir7N86khbHJ+FOmYZVyI5klofzO2BmILDHBxMMHC1ru/Y2gHVySEFKCFwKHB08fzV212xxdPiA
+                qp+lL8FgV0M6MYC1Z5aHAQesBcAROjPUuxvu5ACIGmBwJ2U94ykb9YChN1g3YgYEgAADCVRAsGkNshwM
+                Coq+7wlUyAMYCDrgeifjOsdiRucxhRAAwW0t4RYGED7qjiaAlY5BAUBKR80WahBgD8S6mwIOeKcAeAB2
+                4EwD5q1NjuzfruxhfE7cBtBGMOky9O15M7fA+a9O7IcwMRzGms8mrPYq6vEJD36mCFWYsZaS+ng7cVrb
+                34iGgse6gRW1bVooQ4fngLq/M+vVUAAjBg7YpU+sxseiAG3w9VQCjBzSti6FFSg6wUCuta+wstfS7UUT
+                lm4vH5dT1NCnqk6ygnpNZjFIgMtoFVW1UUC81IqioSTHKSguUl/TM9W64/yBKb+cOzBlYbek6ANgg7RT
+                LwrrrsHAaEYAvCyo7rCyB/Z6VUja3P9KYPTtrDB4YXBZOYdfQPTHZlyYIenwjM/TDqn6dFxtCRBDzSiB
+                hiBqdb3hfhBTmIcHZSJmHwACesZ9gr3QF7zgueolMxmUGnvlQu5O8IUUjzMJbFZQwDzR0knCM+iPM3vW
+                L1h4VHfZCyjUNvZve8Db18PbFMsOxSQJ7VGGJ7p9jjSi3kM/6IonPDAFeEwloexv6t+Igva0s2a9ESJg
+                VCQku8vJd3kuErM14QRglCXMPgRIKssfC7cBb3NxuS1jZ35Nv33FtX0OF9d3O1plS7S5UBQGLh3k1dFx
+                ittsZKuTYs2lWSmRe3rgkt0pcnt8jLlIQAJ5PAfUDddbBtUd1D2pHrEYGFnCcDC7ZJj/GWD0fvGohZ2V
+                ObYT96kRLbRCPm6wbyYIAENUVabNAcMfuEENpVaCFYPUZn+vOazrv0U8E1wjZq5WrDJr9sv2zZz/1qzX
+                Q7jtHai5Knic6zCAxBL7H0MyfmN1ROAIjIFqCzv3wWewPULH+Kg8KOORNF97/SyyqwojSCqvMooqcYps
+                YvR0vQuAtpF0EaciEmiVSY85TtlZUOMFiwbu6j+6Kx2fP1ohrZm91VMcaae2khEorVOrGNrGamvbGIBb
+                PqnnZVrUNkGeQUEItUcaJs0mdRL9srked7gRgCIJRjtFw5gNbctpc9tx/5T2v8poK1pkslHVcSMi5GV0
+                yS7UgNmqQyWJwPBMzKmCwIs6npNYhlVlEgQu4QJ2CwyOqossJSSgiO9kgByPAIlYnWeZ/5q1BptoiURh
+                aQuBTb4gC8y8f/AzwO6D21H7ZTiHNdOQeHoRauN9hFWEgkYQtAsz0bPaNKCyHKpX/M9OJkbb/ErlTgQd
+                E8trMIR/1iMV+VtbomMZLQQbq7MuEgCsfS5i9dolu4k32mKKInUgU58Lq9+grrMasMJPPQP34ZAntlFH
+                Jy6JIjsLf8OSQA5sMXCcPhR4WD3hOayK3MrxiRUcPcBajRTA3Zzm4faFVQzQ9Nnb9UWltMHEJZwMQ/oH
+                CUOfVQyigcJxSFZQ8w9+TjDa98RlS3tZD2ibiei/a6Wj4I918yt3FJy7p7C2b0qsuejiIWnfA6sD4kVM
+                9qq2W9aiLfnjD5fWdemT3mHH6D5pK+AoeKAXbjp0WXGlIzU+Sl9+4eD47yBOUYvHYjybPKPtuWX91+SU
+                j+xg1NVfPrzzlwLHSgBKJHSA0yE9BtvftuSOzzva2GVYj4QVfdLjdrho6IiZE7ACLTF/HaocfLCgpndN
+                o5ioKApnMAq1qXGm3EGZCRsSI0yVntGgwwBa7XBHbN5/dFjeUXtPm1OOEATGnhxjyB/SLX5tarS1BIYK
+                jziSCLe8zpHw29bDl0OdLxiQtCA51lAC8ZUMNTrDLojbD5f1X59TOapTvPXwxYMyFrbTy/LseesM4TVh
+                K09I6z7hvxwYYVKBVGGPBmGEkFeywz/8OT2gL7bT/Ypp/1Hb8Z7tMYkupkz4vhOA0S25DTM/2vYa5ED8
+                6RmhanTvxGUyOFMUnsQo7i+u7jHtjT9/qKh16Oc9OfIyFRMOcKIcPFqbdcesTd9VNsiCBc9dS14ac3BA
+                p7itTlWlVFhjmcu2FY978OMdz8LywLLKxrQHrhz4b1j6xwuGY1P7R7/mPrxged7wV+4e+OiAzgk7IKLL
+                hL+9fl/x8Ofn7nx+46HaEZDOTJZlSqIY4iW96qyUJd8/dv4YqK9O4NC8dbmTXvpu9zP7ixozG5wSXcWP
+                WaPAos7xpvKpF2a+PWNC5ougpnOcHhVW1Hab8d7W9yDJxeVDEy796uGzLtazjKhgJslgFszh51yxo3zc
+                g+9sfvbiUR3XtyMwDqYPutoP6xlJARM2ik9G2t4kwB5g46SdQexNkD5rGNJ23wPWCEGNywOcH0XZCPyE
+                LT1341Ib4LqQmuoMqmIJ9HdIULrN65xOSEuAC+1npL9DKitIowWZnquamNE7UcCDdFSQ8fsALqUBzgcF
+                pSvS9q3xsBs4f5/PNUfT+24Kcm9gSP0oIDTQdtgX5PyhlFmtRVrqsO60zuX03QQDFEjrBamw4mn9Kmnb
+                tNV+N0barkm0/8B73k/vG8jsdhZt/z/9HIOckkW0zj3o5A791+5zzxTaNlb6bqpomzYnqW06fR+x9Pxd
+                KPiOlcPoPdbRZ4Wxstmnv3Wm111B/4YUamv5Cwd2XnTHhLIPZv2Ye9tzc3e/OvDp+GEmnc7BEA81h179
+                v53PlNS49LeO6fLd+DO6/OQmYd0q+mb54Ztq7YoQaeaR3SWhr5YeuG3ALTG3seAYgdhGaobAIOS2mnTI
+                YODQi/P2Pzm4Z9yqkT2TVrkViIUzkCY16ngHj8+BczUdgUGr9pSMvu7F1YsqGxRTtEWQrx6R9nu/LnE7
+                zXpGrLWJxr/2lw/EDJWBouMZ9dtVh6+7892tXwEeZiaaj154RtKC9Fhjfk2DFLNs+9GxWw7XZj/2+e5n
+                G+2i9elJ/R+BxdBYlZYtRqx4Y9a6aFP5Ba/+tP+JR6/s+6RCUpOpx+rP4rrhOtrbcSb7lg7wVD+s8XU6
+                eCA56UQfew+A5S20w/gKDDCLF4uyUVDzHXj3ULYV7/UZ5P6DvUo+CtD54JqwE9tltKPBxkdXeZ0DKfTf
+                od+/kD6XRyrotf0lwk2gz+m7MZWdXu8xP6YBlT7b1ej4pl5w7t1e50RTpvAnrb8/EICtPh+goOEtsE/K
+                Hch/DkLYH7ov0vaxmejz3R1I2yrWHxCPoe/cNyEu5B+cSY+FUrpTIPDN3QnPBNurvuLnO9B3fqO22b5+
+                1GzYMxpyZsL+PdfSzwHo872+D0x+gB8bJeR0hO1NZwVR45+jrM43uSxsV3BXALPICxQQYUK+k352jhcI
+                Ijrh90faVrGIPl82D3k2H7isxzOLN5VdunZvdb+vlx+YNv3CnrM4jkdr95aM+nF9yRVpcSbbA1f0eprE
+                vCgqqnHZzb9uKploNgrqFWfFz/2/taXXLdlacWlZfeNj8VZDpQTnMSf2VDNmbdU2hXv0ox3vL3g2+qwo
+                s6GGUY45S05gRXa3U/+fudtfrW5EpqwkY+m7dw6aNDI7faX3ORAIVF1vi4Gv1jsdka//mPMfJ+Y+w3t2
+                2PTxfcOuTI+NOrYf8b1XNDz9wAdbPvxmZemkOX/kz7ju7M6fZKXEHvDcGNZ3W0w8euvHQzNHZ8cvGdY9
+                bi3YIzlGQKdIHEGYHwR1we5u1+Myn75kOB+2ALiBdlBI3e6bQNXTGW+nM6bdD+hCZmPYuAg2RX+JdnJg
+                TRA/9CFlBIt9vuNhQQ9QZwAM/g0+53gWDt9KzwGALKSs4m6q5m+jwO4tesoMf0HH91pOpPV8mNbv3QD2
+                t3V0oDF+WJ5KSyBTxaMUdHfSa+RRhjsZaRvWwyC/xM87qqdsZgpl0H/QiWcIffa5dBA2+mFvf9E659M2
+                7YW07Qa+pIN1V4jtk2BO+JSCmZ2+i7soQB3wAgrvNnMEabNKyiiH0r6zimox3v2vBwWw1+j5KmX3U2i/
+                gwH3qp9rP0knCOgjb9P3ASweso7DjodmqgkpfsZKOgXFT2g/2uZHw6ikhEDyMGZeklmUFB1Zete4zFfu
+                +Wj7qx/8kvvg5SNSv4i3WGvenLf/mZpGkb3nkqz3uqVE7Qf7m8AJaMX2wnE782oyhnWP3fHsDYPu3pG7
+                cuDmA7XdF/x55NppY3q8zfj0F6dLRsOGJK0QeMb2xdKCi5/8Yvub79wx5EZEov3/HqKxr7C6747choF6
+                3JQzJ2bPHJmdttIhQ6Q6R2KMIfktfDcuwlwF/f6vvdUjDpTaOlr0jPzk9X0fAlCEdGTwJmRGRha93vbY
+                dQNmrtq55KL8SmfUip1lY7JSYggwwpLExCih+IJBaQtfm3do+kMfbftw4TOjz+pg0Z+uhnmPnwpUwTVe
+                n39MGQfYELOo2udrTwH5hnYYXwGV72kKREN8VKpfKUg86AcYPQKd7koUPKP187g87jMR7qd1utAPMAIQ
+                +9ta9Uc6OK4OAIzQRrDV6w/NsNH5Cgy4RyhbG+3DRIAJ/4y0DZWG08HvyzRBLvJpp08oyMPEle1n4oBr
+                /uSnLrkUvMaGGBh3Iv+7A66idbvCDzAGazMP8Nkp+10b5Lt5FDi95T06KQAAfubT9xJpv8ulfcG77/5A
+                ++YlFJDXBejzN9AJJtB4akQ+G72xZFMqxYWuOy9j9tDu0Xt2F9Slfr44957Ve0tHL9lRNaprqrli2tjM
+                NxCsL8aAJ6pu9NWK3OlujK2XDUv5OsZiqbnirOSvIDXZ3BWFtzaKqk7CTMt7TxVw6Bj1QtULN/Wf3jXF
+                VDFnSf4N363Om8ywnE/9qWW82NbDhsE0LopvHNU7cSmE9XC0ZYlfmsMAzUDojmZCOlzm7AVrqDMSLIX9
+                OsVtgmWDrKyRAo4smuFReoy1sFuqdTfEUO4tqu9LJ3uyvMYtqez9l/d6fPzQhN/X76vu8cxXO19nyHs+
+                LZ1vLAXGHX6OHaY/g+3TYQnweQ9qb/qdglu0VymlrGuAn+97Gmk5ajrN/w4/g8ujavkLTVK8ZvUMavfs
+                Sv+2BXkWjx2xNeJ5xrkB1LP36c9zAxjzUYB3czDIu1G87Ixd6XN29lLXrSHuQ4oXU+1C75flZZaIaMU1
+                BWpLXdvEZOQvWLWAAqKVtr+3DKKT9lcBJvTZXioyCjBR/d6MMaU78QOy6byKIox628xrevzLrOfQh0sK
+                7nvwo62fQxacGeOzXkqKjiqFtZsGXo+251WfsWZXxciOCeaGS4ZnEJS94TzMKJONFVsP1PRevaNojMHj
+                lfbqLQ63ZErqEFX8xPW9HwH3zDNf73w192g13cjbk1pE+1FbZ4+WsSpr1gkNVoPBTlbMYBCFvbM8b5Qh
+                e8Zo92iwSxEqBsIIs77GyOkcrMKSPalVGRJI4N+pyh5lMVTArarrnNHHNUsIQld5TuAcz0/pd3tGorn2
+                kyVHpvy0Lvfq09yjpg8w+zU1sweSBPrzOjogy7xKJbUrRaDAGzXpW1ln3mew+gLN/RSUc6lKmUPVPysK
+                7X4r3k4qRNVJf1Lo5ZhpzXP6ezcx1MaaT59vD53k5gdpm5MRHbWHHqJlD33ezT6mj5YKg/zvo9Ic8bR3
+                cgvfR4GXYyaY6aBl7INnIOWTnoRlw54sV49K+f5otTNif4Ez/axe0dtvOCfzPbfo1tYr4+f+amne9Mp6
+                kbvkzKRvY8z6qo9/33/nzxtKJ8ZH6Wphf5Q5Sw7dDUlf/ed3U9F1o7rOufXCTp/lFNjj7/tw46eSLGLM
+                40TVq8+YDXobZM8RJUXvliSdSpIZyIjF14Vp6YdVuTcOve+PjQ98uIXMFiY9yZIK27HqZORiFcjywUBS
+                Hsj24UlAKyKXKBlIWjSBdZ/4NhnIMm7OTIjIe3Zy9wdgy4WH52x/p7i6LsWo5+zof0NUL9X2J5+ygDoA
+                PkEnehnbWu6k9igDVZmfpgb1Oeh4GGuohWliclF92EgoNIBPqd30ALXxPUMdIIvbqF3/TU0aNmrbe5qq
+                t9/6VeHaR3Q+NmvUzLqobVFnXtscinJczMruuLjbi4s2ll3mcCrCHeO7vWg16RxuWUECy6OCivq0xRuL
+                r4g0c+j6szt9MOePA9Pven3jG8ggYHASMKBx6M/91aOxqprdKy16998fT1Nvn76u//0b91cNXbSpYtRb
+                P+983EDyTR1/ro7JljxIO1bZIEYdLq/PiI3QlQNYCXRRfWmVq/OGPdWDrUYd6Zwd4/QHdTyDSqoaUksb
+                7InJ0aZiVeGwGi0imYWsygLCz6ArrLZnwuqY5HhTkb/GhNpNOrvrp+v21p7z/q95182cs/nd/pkxm1iW
+                /W8AvqYGvGfrTVCF7jhN6juVAvFZXiq3Ry5HwVdgtHYxmWdf5s4Bjqf4tNfJSidqF15N7X7e9T6D2itD
+                KaA+30SZL6ip9T7MdSJqvy3UvaUf/Xmknd8Hg447447PVuoJn6oo1mqsMOkEF2QE6xgfmQemA7LqGWPX
+                z3/mT8wvd0b06xK5s09G/HYDz7rvvabX7Iev7PnujAmZ72bEWwor6yVh7vLDt/zNeUW1ZbA3RlssNc/e
+                NPAeq4lX3ll46PEthyrPhVhDz9jtnmbZnhxtKK93yOzHv+x/gKx2IfkdtXPwuQ5OB/kaOXKTflkx6xNj
+                dPXFVa7IeatybxYwA9ZxPERok72ggREu3pQ/IaegIdOEsXRQZvQ6/4YXlqyVefr6gfcO6ByVv3Bj2SVf
+                Lc29z6Tn/huA0fPiA6182U/tYODlyzxNgNFKWY0vKJqbwdhaa2MEryX0q2sCqGA30Z+rQ/ScFi+V0BfM
+                rW3Qrjp6z2ofUERN2GxDbd/0lq6035X5sc9uoar9xAAmiqkn+T5U2iYnMFWWoWm5iM0OkT1aOJUmcJNk
+                lXQuSPflltzCjxuKr4P+etXwLl8InCDfPLbHe2/cNvT2l6YOvuuFm864a9pFnV6GRBE/bSieVFbtjvNX
+                C9i/Gpw95/dJ/n3G+C6vl9aI3NFqt5njjucQSYwwVNx4btpsRZHRj+uPXjX9rbVfb8s9ekadXYyqdzij
+                Kusdid4kLi3GWnL18PTPZUlFr/548PFX5m17orCivrPNIVvL6pyJ36/ef+Ojc7a9a3MxTO9OkfvP7hP3
+                B/KzgJGE9OO6xUcaKv99Y697ACaLK6SY/wq+eNxGAyEZ4FEd7MMMoPNBSAQ4QdbR389HWhjQpVSFfbAd
+                6wsDCOIMoR+ByeRcamCfgbQwGGsAW1glHfSjkBY/OZyysuYKOJog7hFiJyHkBrzl2fQ6H9IBCu2zPETP
+                mUdZEcR9QnjOSMoSn6Umg1ALhDxtpDbj5ylLhfcM4U+/NDF5nqyATTiLqu3X02cGNR6iK6KpCcE30Bu0
+                O3B4gYMI4hHH0vcxgpp2wIO+qpXAqFJbLjgdp9N33Af5U0VgIZ9m2yOJY+mKZQ4t2VYybv2eqr4d4wwN
+                E4YkfSsrDkw3WbJsEMaXgsFz/JD079/8cf9T+wttcd+uPTL1nglRL8kKPiJCpm5F8NyBIUklFPTw1X2e
+                3JhTOXzNnrozZQkyc2vpVVSMx/dcmv1CXnlDxtzlRZM/WVIwaf6fhZMSo01lkFqsol5MAPXW7hJN2vkK
+                evDK3k/klzZkzv+z/MLHPtv97/cWHnqsg0Vf1egSLUUV9ghJUVHXZEvxf27qe5sFbJJa6n4GnhM/r07V
+                1jESW6sbl3GDuvx8+0VVb745P+deWOeNv9+eQY1mFNiZYaLvjQliZPZHcT+gnegJWhqoods7pg7CYK6j
+                A+YFP9fwF2PG+9iIgrE3f23oqau/532CsonbaPEeLOXIvye7gQ6wWV4D/S2kxal5s1EWBXYkgf0tgtr9
+                fL2dAIhTAoCyMYj9UR/g3TTQ+8Agf8PnGJijAm1Az/q885ZMOADAECL1L1o8cogydGsQBm8K0mebSi4h
+                04nuYZ/Pwfv/EDru8feVf1E2ezMFcW9ZSt+H2ML34REA6WFe94awqD68wnBeLY0hkGPFtDjDgSgrb9Zh
+                lZUs78OYsGJb6djEaEPhNaM7/pAWpy+2SyISGIH0dBlS3isKSoyylE86J2P2J7/n37B299Gzp4/LfjnK
+                qqvsmGwuiu9gKCYTEaQyh2w6dhsyCoLjP5N7Tr9t9s5v6xtFc4RZqIb7uTD4GTje+e6dw28YO+DIzz+s
+                zb8up8jWr84mxSiqwiZE6Yv7Zljzrh3Z6QsCZvj8SLOubs6Doy85d/nhmxesPzIxr8zRvc7hjtLxrHNQ
+                t6ido3rF/T51bI930+KFI7LCIo5VkU5QHRkJpiOJHYxVPIMkAHkGUqe5tf0KH7qq+6MHS+u7bT9Ulx0f
+                JRS2IzDeQweQv5cNM2yCHzUI5DOkeRYP+TkGavIQOtAjKCD6C9aFSANwtkAQeQYFPOi4ObQgP6rONPT3
+                GERfMJmGToy79EgOPbbTz7EjlBmcRW1MCp3hN9OZPZAn8i3KNnvTwbrd5ziEfdyKAi8rdFEgBofPmV7t
+                vTXAM3hPHD9Q0PYV+NzjWfeVRfR54P14ViPtocB4pR9TAqI2wmkB3klTsoPaLyH2ryMF+Rz6fKMDAJyd
+                AlBtAMC7Bx3fxS6YfXMXZWdd6GRRQt9neZDvQWA5rOh6m76PePoOt6Lg4UEv0QmgMsg5a6it9SxaPxKU
+                zijqiREPMmZRTodixhSQ4Yw8ZIqE7N9ItLmtnMowgkm0YbImE0+xzCBW0SNOYAkDJLZKRWElu2qBuEaD
+                RdfAyTLvEBWTjlfcet5ANh0BFdnldiK36EJ6HezSpzdKbk7gDKyDEThRgOhCuANmoTpGS0phc7lMdW4U
+                AfktLDyyWYx8HWyeoJL0ZbA9JwZqjqSHIPmUa+zuKIfEmAys4o4wCjU6TifDk7qc9cis50mCCGCodjdr
+                gg0TTAKEBWnataLYSUo02HpBVnScw6GaWR0r4u852gMVTzZRbVjCchpKJLWjHqBmnNNW/CaqZTE4WIy6
+                Rsj35WaPb2IaadIR3V+BPSBgtzF83GHnkV4Pab5AC8XqNEM2qVIMZo6wGTf+WOAx0PGQmxw2odKyFsMW
+                p0ajGXF6A9m21CBgwOF5B2z9DFOXBOAqQfIxXkSwkQ/+zawX7HoaOsOTABwJziNpxlSGJftLk0zioAyz
+                HIoyGWsjEFOrhZqrJAs5BH5znMfJoyIeg36EQd8ATFZRmBO0BqLuK3AOK1vhedhwzw5LWE5SBNR6p1i7
+                it/hripa0mzvJNgyzVgGMAMgYsegKMsMASZiOGE0/zUnO/D33AR7dIhu3wnLTSCWnNHO8xgs9BjADDoT
+                AnYJ6jgcBy67/dDRYc/N3fiiwCPiXYYdc7WdpSWK5AzJ3A37WAOAwTUh7yMc07E6klaMnAVgCBQY/w3M
+                U4fVZ57nMYCz6Lg3XgPsgNZZOCbT5w9LWMLSWlGp6aLin1DZFmfihfwQTgfs/IeBDgNNvd0dUVrd2AWz
+                K6Z7euQ+I49guzBUVGlLL6mxJ2QlWw90MBnqKmsdMSojsw5R1afHGouOlNdnlNW5YrumWA9GmoRaCKmp
+                bHDGFpU3pu8tqB9QXudOk0VJZ3OKpmq7GJMYY8jHKriQU1DTC9hrZnLEAbes8PWNzg52t2KpaHBF9uto
+                2Vla2ZBa0eCO7t2pww6eAR+5inYdqemN68f26mjdybLapgcSvt/pOnUBlQ9LWP7LBLTILv+Uyv7NxkjW
+                t8gc2YvZxZGN9zT2JyOy7ljEzE7bfxijKuabq3YUnrNqb8kYODOnqL77u3eOuHH1jtLz5v1ZcE3XZMve
+                vQU1/V66Zchd7yzY99Cu/Iq+d43v9VpVvTN24YaCq2GDq71FtX1fmzZkmt0hWWZ+uumtXunRO/eX1GZ3
+                io/Mu2t895dve2vt3LN6xq64clSXL1+Yu/OFTgmW3KIqW3r/zJj1U8Z0m331s7+v7tM5fovdIepKqxyp
+                XVPMOVWNUmRGgjXviesGPPrkl5tfdrpkC8cqCmx9/cJNZ9zN8YxbVbVtl1ia2xF5OZ3BxugxInCMAbcF
+                ZsccSRAelrCE5X9AWsYYYfWJd5A4Bsizeieu1ht5sdHhtqzbXXXOlpyKoV+sOHzLuf0SFg3qEr9ha271
+                4EUbCy93Sqph2sXZ744d3GnBhY8t/Ou9u0fekJkUlfPuol33f7cq72a7XTLccEH3D68Z3uXr5TsLxs5b
+                W3CNQ5TNKXERJc/dOOyBF7/f+nRWWkTOc5OH3FvdYIu+6Y01888fkPYHz+pt/55yxh34XP31z6/47Zkp
+                g+51SbLhltf++mFXQU3fP/eWn/fYtX2fAKZ43+wN7x8srnknu2PMLgWo77FYRua/Kld7WMISlrYGRlVC
+                LOzNQvfq88Stk0AwnmOe+nzra9UNzshuSaa9blESsMoqSCIyHSyp7VlW7Ujvnmrdf0bX2HV7Cuqzo63G
+                yjq728JzrNgxOiIfgKlLUsSBP7aVdAdq2jUpimQg4fAdNRxWmSiTnoQHlNU6Evt37rANIliirUK1xair
+                b3BIkRYTX88ynKSoqiG+g6HMyPEu0S0ajDxvr7e5o9ySol+7q3SYS1FMlw7v+HVclKkMtlyADN2e59DE
+                E2Wg7W2tqOHOEZawhIHRPyoiyMhNolg8sSzMMbJI/t+RX9d/5sTeT2clRx38ZWvZ1To95+jeMXJbSozh
+                6JQLesxulCR9vFGoaLTnRNpdkqmDWW+zGvWNX6zef8uY/h1//X51/mTMLn+z2UXL7MW773xi4oCKnKP1
+                vVwuxaDKDOsQJRJQOrh77LofVhVMHdknbcW2vIr+dqdkxkBY2OhQIiAQXVVU1uFSTLLKcJB1rNEhRaQn
+                WA4ndNDnnz0w7bfsTrHbXZKojzTqy12SGnwhrcqRPY7DLDIsYfnfFO6pp5/424eMqqXtkulaEBVxZEWI
+                b+FYXo2N1FV8u/LwpN355f06xpjyB3VPWHPx4LQFf2wtunDRxoJxG3eXjuidEbW1Hqva3VKj9iV34Iuz
+                u0Rs+nVDyWXLdxSOzky2Hp56QY93+naO3rHlQMWQ3zYXXFhS6Ugdd0bK/PQ4c14t/t4Z3RLWd0uL2lPT
+                4IiZty738vyS+qy7L+n+n7S4iCMFZbXpI3onLcNVZUuq6lLO6pW0WpElJr+iIX3sGWk/dUmwHJy77PDN
+                y7cVnldUXt9lQPekdQwLqx5ZEubz9wLhPxzZUB2mAhZ2KIQUZiwJZQpLWMLyPyCMqoZ1xrCEJSxhCQNj
+                WMISlrCEgTEsYQlLWMLAGJawhCUsYWAMS1jCEpYwMIYlLGEJSxgYwxKWsISlfeT/BRgAVeEPy1kPCfIA
+                AAAASUVORK5CYII=
+</property>
+        </structure>
+        <structure>
+            <property name="name">yacl_logo_real.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn
+                ZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/
+                IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6
+                bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8w
+                Mi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9y
+                Zy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIg
+                eG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDov
+                L25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20v
+                eGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9w
+                IENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJBNERFNDNBNENCQzExRTY4QTEz
+                OTlGRjI5MjRCRkRBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJBNERFNDNCNENCQzExRTY4QTEz
+                OTlGRjI5MjRCRkRBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6
+                MkE0REU0Mzg0Q0JDMTFFNjhBMTM5OUZGMjkyNEJGREEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6
+                MkE0REU0Mzk0Q0JDMTFFNjhBMTM5OUZGMjkyNEJGREEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRm
+                OlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6rBZZ+AAAWeUlEQVR42uxad3gc9Zn+
+                ps/ubO+rbsmSLDfJNjY2NrZxAhh8lJCYEhKS0AIkdyGQ3AHHJUBCTAIBYjCESyjJkeNisGOq6cU2toVt
+                3CWr15W0ve/sTr1vVgQeg8yFXC5/3MPuM9Jqd/Y3X3m/93u/34jQdR3+PzyIzx353JG/gyO9SXWqU6BU
+                KkJRkSEtqtAiFEFTNNjWrwDPk+UjmxXBZTfB2ETeHxGVRb2j0QXJrF47kVIqJTFvJwmC5Dg277Ky4z4n
+                O8zxzJGmSsvORi8z4A2YNK1IQDglgw40WMxmKEkKaKCA3WYBt8VsWDml8dM93Iev6b/Gex2faByYOApK
+                smLb0xm5oCOUv7gvlFuayisWRdPw4hTQhAYE/ja+ASAZMTHeBo4iwWKi5Vove3Bmg2vz6bOcf2BpbljR
+                iclT/y4ZsZaAwuu92VkUdndOXPfWkcj3RyJiUMF1SJIEEi1BOwE0XJck0BF8Ryv7AAxDAoMfUjQ6ScGk
+                Y/jLZabz8xsdT6xq899V7XOPZgoSqLr8mTLyFzsiyjIeOrj0HOzrip5770sj63tCuVpMCgScQiLopg81
+                VjjfC7q5QZ3n49OrBDkcKVJDo3EHwVBVA6PZBT2h9IJUXgsq6CSLnvAsjVllgGMJUBGuDoHIrFlYffvC
+                Gb5faYSqCoLwt3dExWc6VzI9svnI/Zt2jl7tsjLKSY3OZxfO9m0M2h2v87yWqLCyUO0goS+iwJwWBwxN
+                qDAwGoaKagfEExL090UFl51bunXvxAWHhlIXRlKq08SSIPA02M0MsOiYougwt0Z447xTqy+vrvAMWzgO
+                s/o3cQRhqykQTqb9tz6yZ8uBvtTiMxcGn1rR5rst4BW6gwIFBBprzaTAQckAXh5S/aPg9gbBhNlKOTgQ
+                Y3lIcx4YVjmon+aBw0MF0HUpcKAn+s+b22PXFkSNFzgCrGYWPFYeVFUHj5MMfePMpi8vnFHVXsTi/4yO
+                aJ84mUNcj0bigWt/+c4OJCfn989ruHTlSdaXo4MiVKfGIGBnQIvEQA6nPUQq2VKiFb8YTnCC1aGaraZE
+                aUZVdylXHDb7KjXdaYNSOA/vF82gBV3QHKRh35Ay+7EXuh/d25texCNOLTwDVW4z6EgmFhayl69uWNM6
+                c9p2Sf6kbS1eampHhuPjx51IY1VP5DnhmnvebXfweu72b845Dzgh7NWT4B8eAX1opELp7L5U37P/Qi0c
+                nkUm0iYSSYFgjZInQaNp0K2CqDtdffq8tq3E8qVPCibbIS2fhYTXBWM1DZhAApSSxv5iy+DDW3aGLmcZ
+                qgy1Or+ApEKAmSdi37tg7oqA19YhK8cjZk6FMLUjyWz3h69Jg04IE1yzvmdTQlRtd17ZumY+MSGF0nhh
+                WamwPbjhVn37riv1bI4hPO4CYbWEwOXJ6apMQDpthVyugkhnTKSEtMuyoKsID7Og6G3znidXLLtNnTfr
+                0NiCNrBJeZASGkgmOzz27IF1v39t5CZEFtgQl00VNswMCUE303XFGY2nms1cVNM+sndxk3fqPlIomT98
+                jTwPT7w8ej2yjO++H6xaycVGVXF0Aqzb3rtEefpPj+N6RfrML25Q6qdtISrrDkMumuZXrVKVRAzE3kGW
+                l9Wg3HF4sRpLXERt230Wkc/yhKbQsPvdLyn73z9Hu3jt7aa21jslq12XtCIoRR2uW3vSzSzPl3qHU80N
+                FbYXK/3chBmTOjyWmYk1umC+w/2yrGj/cx95PyR9ACkSQpF087on2zfee/3KM1xePmwaGQb2gfW3w0tv
+                3gxrvnALuXzFBjpoF0uROFC6AFpsBEwrV4CSjIM4FAITw4JUTEN+zTnAPvXHRuadHXfAtl0XU9hrdDwg
+                mwP57LOfpu66+UIGoTScoKHIW7AmaRgfiwFN0kj3JRA4GlLJHFQ5WMJvZvTyd8vdB6C2Njh1RlhyEoMm
+                ZJCt7/bccNmqplvtbiqsMhrQj/3ubvLA4bPI9XdOU8yWEJEvAimKQGB/AfweratAGW0Zf9OqXMY3WcLP
+                lSIQblcPXH7JJdSC1s36o3/8DYTDdt3tyVKNtbuKTg/EMhKMx3KQkgfBZ/cADyQtK4Q7nSjwjNsh8jwf
+                RcWg5zQaKis96CT1iYwc54hUkMvZ6BxOtOmElp0/y/m8OxsGePLFK+mevubYj9Yt2claW5p8plB0LA9G
+                8TkCtUYbh5xuA0ecAZ7yg+okwYNFTxl4xoPCyFJ5HfhTTno6z9oGtT37btKuuPAWk93Z1R9XYHQ4CWaK
+                pcPx4mn7u0Yviaelk/IltU7WdI6loiW7hT5WYWc3zmvhH2VoMqlrxKdDa39/HiUEAVu2d/9w9szgc20e
+                qcvbtX92fvPrt1L/+sPLjqU5ad3Gg68umePb1Oy3PFLABDqtHCgoJyJIq3aLDUx2HvKYKZ7hIJ4pgJtX
+                wS/lwA8ZPDBDmSLos+fBeJUfEp2jkCdNcKw/umRfX/6BsURhAfZDQGOBQbYxJE9Z4uB7Kv5wCuT411e3
+                fLm5xrNLQUaodxBTZ0TjdQhnRQ/BUtJ0F9fly4xA4Z09l0Z++E8/FqsqJKdFhivWtNx2w4O7tjVWWtee
+                Ose/zt3o3IbNTMaiROMJYLELSwa88MJGkMSCAlFnEJK0D46mklBjl8AsElBI6hBTac/2fcO37e1OfRvz
+                Rk9qMUOfoeGGNEWRRpclp/GeBrJK8EOhcEO1k9ylGjXvcE3tCMVkqXSuOH369EC7TcsAcbBrITWt9qhS
+                H+xCtQUWpONFM6p2/vTy1jNue/Lg5v3PZV5vrjT1N9dYX7Gz5N6GCrrDg91F17Qk9qAiR6NCxqiaKb2s
+                eidIFkYcPrAg3I7tG/raK+0jv4iklaCJN6KvY0c3rCPL1G8UtYYqWsJz3VZmvLXGdHdrU9WjZp7MyFiX
+                BBCfAq1QZ/WxIa315Br+3QqtkBTf2nuJeNopr8lOV0zDuGiSFVTNBAUxBr2hRNXvtw7+dnd3+kwCQ8hj
+                E0SCAbOJzgkcFXfbTGNWM3PUJxADfo91xO/iezRd7adY3vvmeyP3Hh3OnMFgwzRgZBCRQQ6GpjLWMsYE
+                wDpwWKjo3Drr/bPr3Q/xpJpCuVDOT9CK7VaToKV+2tQZ6RrhhVwRUmNJc7Jq8IhbtztzKDViRA6xjcnO
+                IaVmEdNFSQWbYBq96uzm1XPqJr72fPv4PZG05jfke05ULDlRs4wnpVqM7BIjvBQRARMajU5mMcC0WNJM
+                PDs5pyiYBWqS78oPIytuKzW2bI7v7oZK4XcMkEkVF9YUBWo4pZwtWS3CxweX4xyJZ1QHoYiKEM9ggyJs
+                dIP/gF7IIaOWEQsmOQZ5E0YFo2YYIGNlzmt2Pbm8zf3qlh3Dd76wJ3Gl8RnKJaTIPxcrRhlfK1g32aJu
+                pbB4DenzERCwppD9VLyGU6DDq092ra/22jb4vS5EuQhZpGaPlYRmJw8WGs/F8w1JqH8MWsc5EommpcpK
+                V5bnsoCjB8cM5aLESP4jHCJm+TkOID6YijQsRswAzK4zRa47f/pVjXXpPz71Wt+DoZjaLKDE0AkMAE59
+                hDH5YQ0YapzQ1XIdwAezlyHbnVYqtnJeYP3yFtuDKByThVwWHKwKVoYHL2auHpmPIonyWhgaUCQNS99Y
+                FLQpHZlukhICiFk7Lk4KvJRklCJJkB+RgaaCJKYgQ9nQAIQEXsSMHdhYLifqMLPO+fq6K2a2bG0P3/vM
+                juj1tD5ZxCQaoWmTDukkmoAwUVUCPHYusWJRxa/b6sz3Yw1Fm3w0PLsvxQulhCPgd0ZpmlGtWHsWZbKb
+                E2KJkcciClHjNkJET87PU2ktMZ6RJlKlqKyAYLPFK+wexWCOshPofxbngl7VghBEjCIcWDsBfpw3MiJA
+                pkRjM9ThYL94zvv9meUGiRgkpJfn8El4afiUSgpUurnYyrnVD8yosj9SXWENW8wqRjlrf3V/7pSSrORd
+                PHdIUmXVSCGXK0ApWwTNGJFzookYiuejvJXAiYaH5hM40lJfVTCqmkeDZZbL5XHMNAwynFAR+3uzKi5I
+                Tf79YbkZmxAk9Izn67BO7t92KHqeQUM8PTmrG03YGCVUdDzoYuKr5tc+tGpB8AEzx0TjySykUln76+9F
+                LiqUJF9rQ81z9RX8IdVomoZkkmTwDIXLMsjIqiorQsljLcYKMpGXJEPhZqZ0xO8RJA3DQJVkUJMFNYsC
+                0KiGHFp9lMRxVSpCvWD/8HwTzg4lSeU27hq98Q/vjN+cLsgWM46rfwavip4USyp4bFz69MXBh0+fH7zP
+                6bZHsigY+4bDrl2dsWsTKWXR8lbfU4GA5zG3xapkxRLWjl4OUA0TAEdDoLwWgfoqdXSHP88XJwgTbY2l
+                sgYXT0y9HYQ4MrqqURYGzRkmpbDgdsSKQFkYYIjJSFGYEg4zc2wgvmLT28MPdAwX5hh9RGCpcgkiKJCJ
+                NOwDdGbtMv/Dpy1w/8rMO8YNB7uGkr53D4/eeLQ/ed6cWtemc0+puGx2vT3dFy2U664cBM0YYXTI+gqQ
+                /jM76TpPRU0CNb1et/fmKhjKaj8haxlOGKxQVA2SoWBUIiCG0loiJLAYDdGY2LDrDURLtS/tHvrJ9o74
+                pciapJWb7APG7kgRceR10IllzYHHVi2qWl/p4kcoUoL3e+NNuzvj39/XHf3q7BrXW5d+ofbcoEPoNr5X
+                lD+a/IyhikdFUIu9gp4olNclsAfJA8MtmspJKbsNIrrocHo9uRM6oqMhOZTeoawG4TyDFEyAz9iewuWM
+                ERQvR215t+c7m3aF7oikJLuxQccwUN4syGGTDNj5zIVLHQ/NafbdV+W2RASrBQ4fi7Vt3TN0S/ux+NpZ
+                tULHP57ffE5T0LEtks6BiLBj2UlJbuRCwdoScKCrn94CeXxfISazQWKhC89vWyA0NW7sHixAPK9W1wXZ
+                9hM60jMRRUig/GaRXo0ix8WNxmZ04YGx1LLn2gdRWuQXGntSRhaMc3KSjg2LzXxpqfexi5e4fjGj1jve
+                3q9AVyiz9I19Xf+6oyNxllugs9efX33ttWsq/j2UAq1jCBugNlkHqnFQNJi0AtSM94AHp1c24wLd6wVX
+                PAUEx4DS2bs45fPIyWVLMqmBbD1NlhSbuRQ6oSNiqWikBVCBY3cmywNMoVByv7Bn4qfbj2SuRgSQBrTk
+                cuYUlCl0YfUC96Nf+2LdXQGvY2x0LA4Pvzxy1rtHE//S3p1cQWEkz5jv23D16qrbTpvLxsSiBiLSiYoK
+                EnsaKmUAN5TAPxCBWfkkcMkkFGyVOBcxkBPqgI+nwRyOmMTNz32duem7P8ozZujoHlleVel432yxqCd0
+                hLH5ygIuldWadxwO/4Okkq4DfalvoG6q5DALFEqEgogs5GBTpy4MPrVsrvvnFR7LUDpbML99cOjit4+M
+                33igN3OSAexlc7xvr5rr/kHQY91nNnNQwGLSEKqcroBbKUCLG68XGYIABk4fSgPjFDAzTHmzwWAbHRgo
+                4KwjP/DUXeamxu2SwsbDIzFPOJ5uPnV24AkofMqE2NTYWnakWFQGtu7buWjr3pELNSx6Y8gpYDpcFiq3
+                ZmHwt0ild00LusJ9/QnL8zsGb9h2OP690ZhYI6EiaKoSeq9aGbxxxeLpzx0azoCzlAY3Zrp0LAuJumkQ
+                HD4GlWoJnPZqCEWQBbFBazRVdoD4cAeHAlYWCe1H6x6VrNZc8YpL/ys5ocPzb3RfXRUQ2mWQoVQmCPsJ
+                duMN9awaExolXXNB20Xz64X7h+LqCknXLQ1uurux2vqyy2WOjEULvt+/2HHHmwfiV4VTUsAQkHaBLZy3
+                2HfPkpm+nzd5mYIjFYW5RBY4Nw/mfB6URALkmoYyN2tI3+UmeZzwM1gFo2i2AN03WGW95adPUwwzUfzZ
+                LZcDX4TBWOHk8Vh24VVnVv5MxkB8/D7CcX+mx0Y+oGy8SKkErVXCnpl13G6CRNWkF+DYaL75hd2hW7Yf
+                TX4rnpFtRrkaw9Pyue7NX5wXvKnea+7RLSbgq3ngd+4Bl4mhC709S3WbMIZzcA/gYKWzTJnmASm1vCVP
+                Iu2xRlGaQE/l3LBxyzXyMy/exi9d9Dh77TevVjgzpFOk5b5Nex668aI5NzR4mPIY8ambD2bHR/taDtoK
+                E/HsjKde73ucwdExkioE9/QkmoqoFgzWMvOoSgPm/eec7Pu3lmb/i/mMDCziPDjdD2wk5FR2711D7my/
+                ztHRsUS3WQrKzBmvWWbNehG8roO6zxbXeEEi4mlaLxSd0DXeovT3nQ8HDp1LMqTOX/X165gVS3+j1gkw
+                ECkRdz5+8JnWBs/rs+q97xxLf7QPPMt+ggnx8EjqOC9Z1Euv7h26eeP20M/MGMF4rgQTCbGcMY4lpDsv
+                a/5CXbVnh5UqQVcEYMbsAFgFDswvvTET1t//G/Jo5ynYZMqRJ4ztTixsVeARu6xKkpSO76EjedCNCLtd
+                ef2M0x8Wvrzq7pIrGOlFTWjycfRNGzqfLUi6cNc1i1cSGvmBfJl8LKp3Tu3IvsH48XMwYsAo9Kff6v31
+                m4ei3zbuZSRx0AmnRIQ6ShCejH3ngpbLvrXcufXVIxKUkJZb5tVAw5EDQIVHoZBNtmmdvWvJPYeWEtH4
+                DORVO6HKTHkooumizLFhZnrDe9zc1lcKXznnOUpWEzmk5SHSDgPxQuWvn+nfXFQkzyPXn7zQIpgSH9/7
+                ba11Te1I13jmE9gjJzeByUeeP/ofO48kvsphI8wVFYikRRSE2HMoXTt3SeUvV8wN3EEQZE7FVu/KJmEO
+                JICwYeZQUnB7uzDqYAOm5LbkJUZz2bVMSc7HOw/FPCctlsHth4H6JsjFUHzbLPDm3qG1T7zU/VtUoOlf
+                fffk5Q0B26A0xa2FhoBjake6J7JT7qvSDA0pHOb/tK33l6/uC9+AsCh35kRehryImcAmV+Plh1Hd/mR2
+                g+sPyDai246zfSYHQSIP3MQ4mLBHeLwcEGkkT56FDEJuPBwGuqEJJoo0KNjsorHs0lcOTPz4zQOR0xc2
+                Onev+1bzl9qquIl8aer9Xo+7+rM5QqLSTeWlsjrd0xG65JntoQ2pgupkkLFEnBlEbJJ5xLmuGYKRGZ3X
+                6HlhXoNnk9PC7XNQarKIY6uGcmHB7Gro6ctAOhIHu52CuAKcmCu2HO6InXlwKHdxTyjfVsTp8YJltff/
+                5LzATW4bVSrp2glvgLo89Z/dkQQWerFoDG0K9Aynand1xe/e2xP/SkHWCOMOr7Hdb9yMKeEhoTG0IT9s
+                fMxnZzttZmrMZuUjwaAjm0yKbCya9YmyGoxm5cZwUqzNilgYaPDMWuuh755bc8PsBt8bXuz+TgsqCYIC
+                4oSOTPvrHTHuJ2ayEthtAtZUYtm2g6Fbjg5mz8iKurFHWCYIzdh1KY+6elnaly+BPzQkCGPkNSSIseVZ
+                pnycY6q87JHVi6vumd/s+c+ZQUo2dm041HJeqw4i+Zc58lfcZyfKBhqRrwrYdlxRZT57bKI489BAdO3h
+                ofyakYg4N1tSORkNNeYIikRHiPKd+fLtNEO08xyhBVymnhoP+1ZjtXPjjFr7DqfTLGMiEaoqMuX/8j77
+                X5aREiTTRRAEM4gIM55BGGlMuTkXJILsChUa87lSc7KQq+0bmfDnREYw9JoZJLG2zhGr9ztDckHunjbN
+                0ok9ppjMaWC1sGAyM2DseTV49LIjZumzZeTzf6r53JH/o8d/CzAAKWxA+SP/ya0AAAAASUVORK5CYII=
+</property>
+        </structure>
+    </list-property>
+</report>

@@ -1,0 +1,3234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.26" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.18.0.v202411161754</property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="yacl_live" id="4">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:5432/yacl_live</property>
+            <property name="odaUser">odoo_16</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">YWRtaW4xMjM=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Company_Information" id="345">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">logo_web</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">logo_web</text-property>
+                    <text-property name="heading">logo_web</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">phone</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">phone</text-property>
+                    <text-property name="heading">phone</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">email</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">email</text-property>
+                    <text-property name="heading">email</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">logo_web</property>
+                        <property name="dataType">blob</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">phone</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">email</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_live</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">logo_web</property>
+                    <property name="nativeName">logo_web</property>
+                    <property name="dataType">blob</property>
+                    <property name="nativeDataType">-2</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">phone</property>
+                    <property name="nativeName">phone</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">email</property>
+                    <property name="nativeName">email</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[Select 
+	name,
+	 decode(
+        REPLACE(
+            REPLACE(
+                CONVERT_FROM(logo_web, 'UTF-8'), -- Convert bytea to text
+                '-', '+'
+            ), 
+            '_', '/'
+        ),
+        'base64'
+    ) AS logo_web,
+	phone,
+	email
+	from res_company]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>logo_web</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-2</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>logo_web</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>logo_web</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ycal_supplier" id="2211">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">partner</text-property>
+                    <text-property name="heading">partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">currency_id</text-property>
+                    <text-property name="heading">currency_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">currency_name</text-property>
+                    <text-property name="heading">currency_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total_count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total_count</text-property>
+                    <text-property name="heading">total_count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total_amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total_amount</text-property>
+                    <text-property name="heading">total_amount</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">currency_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">total_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">total_amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_live</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">partner</property>
+                    <property name="nativeName">partner</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency_id</property>
+                    <property name="nativeName">currency_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">currency_name</property>
+                    <property name="nativeName">currency_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">total_count</property>
+                    <property name="nativeName">total_count</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">total_amount</property>
+                    <property name="nativeName">total_amount</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT
+    partner,
+    currency_id,
+    currency_name,
+    SUM(count) AS total_count,
+    SUM(amount) AS total_amount
+FROM (
+    -- Cashbook Part
+    SELECT 
+        pt.complete_name AS partner,
+        ac.currency_id,
+        rc.name AS currency_name,
+        1 AS count,
+        COALESCE(total_amount, 0) AS amount
+    FROM account_cashbook ac
+    LEFT JOIN res_partner pt ON pt.id = ac.partner_id
+    LEFT JOIN account_journal aj ON aj.id = ac.journal_id
+    LEFT JOIN res_currency rc ON rc.id = aj.currency_id
+    WHERE ac.state = 'draft' 
+      AND aj.id IN (1993)
+      AND ac.id IS NOT NULL
+
+    UNION ALL
+
+    -- Vendor Bill Part
+    SELECT 
+        pt.complete_name AS partner,
+        am.currency_id,
+        rc.name AS currency_name,
+        1 AS count,
+        COALESCE(aml.amount_currency, 0) AS amount
+    FROM account_move am
+    LEFT JOIN account_move_line aml ON aml.move_id = am.id
+    LEFT JOIN account_account aa ON aa.id = aml.account_id
+    LEFT JOIN res_partner pt ON pt.id = am.partner_id
+    LEFT JOIN account_journal aj ON aj.id = am.journal_id
+    LEFT JOIN res_currency rc ON rc.id = am.currency_id
+    WHERE am.state = 'posted'
+      AND am.payment_state = 'not_paid'
+      AND am.move_type = 'in_invoice'
+      AND aa.account_type IN ('expense', 'liability_current')
+
+    UNION ALL
+
+    -- Journal Entry Part
+    SELECT 
+        pt.complete_name AS partner,
+        aml.currency_id,
+        rc.name AS currency_name,
+        1 AS count,
+        COALESCE(aml.amount_currency, 0) AS amount
+    FROM account_move am
+    LEFT JOIN account_move_line aml ON aml.move_id = am.id
+    LEFT JOIN account_account aa ON aa.id = aml.account_id
+    LEFT JOIN res_partner pt ON pt.id = am.partner_id
+    LEFT JOIN account_journal aj ON aj.id = am.journal_id
+    LEFT JOIN res_currency rc ON rc.id = aml.currency_id
+    WHERE am.state = 'posted'
+      AND am.payment_state = 'not_paid'
+      AND aa.account_type = 'equity'
+      AND aj.id IN (1188,1189)
+      AND pt.is_company = true
+) AS all_data
+GROUP BY partner, currency_id, currency_name
+ORDER BY partner ;
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>journal</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>journal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>journal</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>partner</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>partner</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>partner</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>amount</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>amount</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>amount</design:label>
+            <design:formattingHints>
+              <design:displaySize>25</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>source</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>source</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>source</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="yacl_other_cash" id="2784">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">partner</text-property>
+                    <text-property name="heading">partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">currency_id</text-property>
+                    <text-property name="heading">currency_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">currency_name</text-property>
+                    <text-property name="heading">currency_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total_count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total_count</text-property>
+                    <text-property name="heading">total_count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total_amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total_amount</text-property>
+                    <text-property name="heading">total_amount</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">currency_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">total_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">total_amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_live</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">partner</property>
+                    <property name="nativeName">partner</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency_id</property>
+                    <property name="nativeName">currency_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">currency_name</property>
+                    <property name="nativeName">currency_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">total_count</property>
+                    <property name="nativeName">total_count</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">total_amount</property>
+                    <property name="nativeName">total_amount</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT
+    partner,
+    currency_id,
+    currency_name,
+    SUM(count) AS total_count,
+    SUM(amount) AS total_amount
+FROM (
+    -- Cashbook Part
+    SELECT 
+		aj.name AS journal,
+        pt.complete_name AS partner,
+        ac.currency_id,
+        rc.name AS currency_name,
+        1 AS count,
+        COALESCE(total_amount, 0) AS amount
+    FROM account_cashbook ac
+    LEFT JOIN res_partner pt ON pt.id = ac.partner_id
+    LEFT JOIN account_journal aj ON aj.id = ac.journal_id
+    LEFT JOIN res_currency rc ON rc.id = aj.currency_id
+    WHERE ac.state = 'draft' 
+      AND aj.id IN (1994)
+      AND ac.id IS NOT NULL
+	
+    UNION ALL
+	
+    -- Journal Entry Part
+    SELECT 
+		aj.name AS journal,
+        pt.complete_name AS partner,
+        aml.currency_id,
+        rc.name AS currency_name,
+        1 AS count,
+        COALESCE(aml.amount_currency, 0) AS amount
+    FROM account_move am
+    LEFT JOIN account_move_line aml ON aml.move_id = am.id
+    LEFT JOIN account_account aa ON aa.id = aml.account_id
+    LEFT JOIN res_partner pt ON pt.id = am.partner_id
+    LEFT JOIN account_journal aj ON aj.id = am.journal_id
+    LEFT JOIN res_currency rc ON rc.id = aml.currency_id
+    WHERE am.state = 'posted'
+      AND am.payment_state = 'not_paid'
+      AND aa.account_type = 'equity'
+      AND aj.id IN (1188,1189)
+      AND pt.is_company = false
+) AS all_data
+GROUP BY partner, currency_id, currency_name, journal
+ORDER BY partner ;
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>partner</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>partner</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>partner</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency_name</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total_count</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>total_count</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>total_count</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total_amount</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>total_amount</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>total_amount</design:label>
+            <design:formattingHints>
+              <design:displaySize>25</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="yacl_petty_cash" id="2594">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">journal</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">journal</text-property>
+                    <text-property name="heading">journal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">currency_id</text-property>
+                    <text-property name="heading">currency_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">partner</text-property>
+                    <text-property name="heading">partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">count</text-property>
+                    <text-property name="heading">count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">amount</text-property>
+                    <text-property name="heading">amount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">source</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">source</text-property>
+                    <text-property name="heading">source</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">journal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">source</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">yacl_live</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">journal</property>
+                    <property name="nativeName">journal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">currency_id</property>
+                    <property name="nativeName">currency_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">partner</property>
+                    <property name="nativeName">partner</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">count</property>
+                    <property name="nativeName">count</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">amount</property>
+                    <property name="nativeName">amount</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">source</property>
+                    <property name="nativeName">source</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[-- Cashbook Part
+SELECT 
+	aj.name ->> 'en_US' AS journal,
+	ac.currency_id,
+	pt.complete_name AS partner,
+	COUNT(pt.id) AS count,
+	COALESCE(SUM(total_amount), 0) AS amount,
+	'Cashbook' AS source
+FROM account_cashbook ac
+LEFT JOIN res_partner pt ON pt.id = ac.partner_id
+LEFT JOIN account_journal aj ON aj.id = ac.journal_id
+WHERE ac.state = 'draft' 
+  AND aj.id IN (1975)
+  AND ac.id IS NOT NULL
+GROUP BY aj.name, ac.currency_id, pt.complete_name
+UNION ALL
+-- Journal Entry Part
+SELECT 
+	aj.name ->> 'en_US' AS journal,
+	aml.currency_id,
+	pt.complete_name AS partner,
+	COUNT(pt.id) AS count,
+	COALESCE(SUM(aml.amount_currency), 0) AS amount,
+	'Entry' AS source
+FROM account_move am
+LEFT JOIN account_move_line aml ON aml.move_id = am.id
+LEFT JOIN account_account aa ON aa.id = aml.account_id
+LEFT JOIN res_partner pt ON pt.id = am.partner_id
+LEFT JOIN account_journal aj ON aj.id = am.journal_id
+WHERE am.state = 'posted'
+  AND am.payment_state = 'not_paid'
+  AND aa.account_type = 'equity'
+  AND aj.id IN (1975)
+GROUP BY aj.name, aml.currency_id, pt.complete_name;
+
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>journal</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>journal</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>journal</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>partner</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>partner</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>partner</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>count</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>count</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>count</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>amount</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>amount</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>amount</design:label>
+            <design:formattingHints>
+              <design:displaySize>25</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>source</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>source</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>source</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <joint-data-set name="yacl_combine_supplier_others_cash" id="2900">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">yacl_other_cash::partner</property>
+                    <property name="alias">yacl_other_cash::partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_other_cash::partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ycal_supplier::currency_name</property>
+                    <property name="alias">ycal_supplier::currency_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ycal_supplier::currency_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_other_cash::currency_name</property>
+                    <property name="alias">yacl_other_cash::currency_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_other_cash::currency_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_other_cash::total_amount</property>
+                    <property name="alias">yacl_other_cash::total_amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_other_cash::total_amount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ycal_supplier::partner</property>
+                    <property name="alias">ycal_supplier::partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ycal_supplier::partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ycal_supplier::total_amount</property>
+                    <property name="alias">ycal_supplier::total_amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ycal_supplier::total_amount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ycal_supplier::total_count</property>
+                    <property name="alias">ycal_supplier::total_count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ycal_supplier::total_count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_other_cash::currency_id</property>
+                    <property name="alias">yacl_other_cash::currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_other_cash::currency_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_other_cash::total_count</property>
+                    <property name="alias">yacl_other_cash::total_count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_other_cash::total_count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ycal_supplier::currency_id</property>
+                    <property name="alias">ycal_supplier::currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ycal_supplier::currency_id</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ycal_supplier::partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ycal_supplier::currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ycal_supplier::currency_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ycal_supplier::total_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ycal_supplier::total_amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">yacl_other_cash::partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">yacl_other_cash::currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">yacl_other_cash::currency_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">yacl_other_cash::total_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">yacl_other_cash::total_amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>ycal_supplier</value>
+                <value>yacl_other_cash</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">full-out</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">ycal_supplier</property>
+                    <property name="rightDataSet">yacl_other_cash</property>
+                    <expression name="leftExpression">dataSetRow["partner"]</expression>
+                    <expression name="rightExpression">dataSetRow["partner"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
+        <joint-data-set name="yacl_grand_total" id="2901">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">yacl_petty_cash::amount</property>
+                    <property name="alias">amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_petty_cash::amount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_petty_cash::count</property>
+                    <property name="alias">count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_petty_cash::count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::yacl_other_cash::partner</property>
+                    <property name="alias">yacl_other_cash::partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_petty_cash::source</property>
+                    <property name="alias">source</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_petty_cash::source</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::ycal_supplier::currency_name</property>
+                    <property name="alias">ycal_supplier::currency_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::currency_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::yacl_other_cash::currency_name</property>
+                    <property name="alias">yacl_other_cash::currency_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::currency_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::yacl_other_cash::total_amount</property>
+                    <property name="alias">yacl_other_cash::total_amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::total_amount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_petty_cash::journal</property>
+                    <property name="alias">journal</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_petty_cash::journal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_petty_cash::partner</property>
+                    <property name="alias">partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_petty_cash::partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::ycal_supplier::partner</property>
+                    <property name="alias">ycal_supplier::partner</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::partner</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::ycal_supplier::total_amount</property>
+                    <property name="alias">ycal_supplier::total_amount</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::total_amount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::ycal_supplier::total_count</property>
+                    <property name="alias">ycal_supplier::total_count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::total_count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::yacl_other_cash::currency_id</property>
+                    <property name="alias">yacl_other_cash::currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::currency_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::yacl_other_cash::total_count</property>
+                    <property name="alias">yacl_other_cash::total_count</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::total_count</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_combine_supplier_others_cash::ycal_supplier::currency_id</property>
+                    <property name="alias">ycal_supplier::currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::currency_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">yacl_petty_cash::currency_id</property>
+                    <property name="alias">currency_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">yacl_petty_cash::currency_id</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ycal_supplier::partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ycal_supplier::currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ycal_supplier::currency_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ycal_supplier::total_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ycal_supplier::total_amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">yacl_other_cash::partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">yacl_other_cash::currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">yacl_other_cash::currency_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">yacl_other_cash::total_count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">yacl_other_cash::total_amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">journal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">currency_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">partner</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">count</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">amount</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">source</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>yacl_combine_supplier_others_cash</value>
+                <value>yacl_petty_cash</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">full-out</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">yacl_combine_supplier_others_cash</property>
+                    <property name="rightDataSet">yacl_petty_cash</property>
+                    <expression name="leftExpression">dataSetRow["ycal_supplier::partner"]</expression>
+                    <expression name="rightExpression">dataSetRow["partner"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">portrait</property>
+            <property name="headerHeight">1in</property>
+            <page-header>
+                <grid id="346">
+                    <property name="dataSet">Company_Information</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">name</property>
+                            <text-property name="displayName">name</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">logo_web</property>
+                            <text-property name="displayName">logo_web</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["logo_web"]</expression>
+                            <property name="dataType">blob</property>
+                        </structure>
+                        <structure>
+                            <property name="name">phone</property>
+                            <text-property name="displayName">phone</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["phone"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">email</property>
+                            <text-property name="displayName">email</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["email"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                    </list-property>
+                    <column id="347">
+                        <property name="width">1.5in</property>
+                    </column>
+                    <column id="348"/>
+                    <column id="349"/>
+                    <row id="350">
+                        <cell id="351">
+                            <property name="colSpan">1</property>
+                            <property name="rowSpan">5</property>
+                            <image id="2210">
+                                <property name="marginTop">15pt</property>
+                                <property name="marginLeft">15pt</property>
+                                <property name="height">0.604in</property>
+                                <property name="width">0.75in</property>
+                                <property name="source">expr</property>
+                                <expression name="valueExpr">row["logo_web"]</expression>
+                            </image>
+                        </cell>
+                        <cell id="2191">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">5</property>
+                            <data id="2188">
+                                <property name="fontSize">16pt</property>
+                                <property name="color">maroon</property>
+                                <property name="marginTop">15pt</property>
+                                <property name="dataSet">Company_Information</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">name</property>
+                                        <text-property name="displayName">name</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">name</property>
+                            </data>
+                            <data id="2192">
+                                <property name="resultSetColumn">email</property>
+                            </data>
+                            <data id="2193">
+                                <property name="resultSetColumn">phone</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="2194"/>
+                    <row id="2195"/>
+                    <row id="2196"/>
+                    <row id="169"/>
+                </grid>
+            </page-header>
+            <page-footer>
+                <text id="179">
+                    <property name="backgroundColor">#187BC5</property>
+                    <property name="fontSize">8pt</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingBottom">10pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[Printed at : <value-of>Formatter.format(new Date(), "dd/MM/yyyy");</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="2700">
+            <property name="marginTop">3pt</property>
+            <property name="pageBreakAfter">avoid</property>
+            <property name="pageBreakBefore">avoid</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="dataSet">ycal_supplier</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">partner</property>
+                    <text-property name="displayName">partner</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["partner"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">total_count</property>
+                    <text-property name="displayName">total_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["total_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">total_amount</property>
+                    <text-property name="displayName">total_amount</text-property>
+                    <expression name="expression" type="javascript">if ( dataSetRow["currency_id"] == 1 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                    <property name="dataType">float</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">RUNNINGCOUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["partner"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">supplier_mmk_condition</property>
+                    <text-property name="displayName">total_amount</text-property>
+                    <expression name="expression" type="javascript">if ( dataSetRow["currency_id"] == 115 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                    <property name="dataType">float</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_count_supplier</property>
+                    <text-property name="displayName">sum_count_supplier</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["total_count"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_mmk_supplier</property>
+                    <text-property name="displayName">sum_mmk_supplier</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["currency_id"] == 115 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_usd_supplier</property>
+                    <text-property name="displayName">sum_usd_supplier</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["currency_id"] == 1 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">count_subtotal_supplier</property>
+                    <text-property name="displayName">count_subtotal_supplier</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_count_supplier"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_mmk_supplier</property>
+                    <text-property name="displayName">subtotal_mmk_supplier</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_mmk_supplier"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_usd_supplier</property>
+                    <text-property name="displayName">subtotal_usd_supplier</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_usd_supplier"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="2725">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2719">
+                <property name="width">4in</property>
+            </column>
+            <column id="2720">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2721"/>
+            <column id="2729"/>
+            <header>
+                <row id="2775">
+                    <cell id="2776">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2781">
+                            <property name="backgroundColor">#0080C0</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="color">#FFFFFF</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Cash Requirement Report]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="2701">
+                    <cell id="2722">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2732">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[No.]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="2702">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <label id="2703">
+                            <text-property name="text">Description</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2704">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <label id="2705">
+                            <text-property name="text">Bill</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2706">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <label id="2707">
+                            <text-property name="text">Amount (Ks)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2726">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2730">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Amount (USD)]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="2734">
+                    <cell id="2735">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2740">
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="color">#FF0000</property>
+                            <property name="textAlign">left</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Supplier]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="2737">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                    </cell>
+                    <cell id="2738">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                    </cell>
+                    <cell id="2739">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                    </cell>
+                </row>
+            </header>
+            <group id="2755">
+                <property name="groupName">NewTableGroup1</property>
+                <expression name="keyExpr" type="javascript">row["partner"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["partner"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="2756">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">true</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="2757"/>
+                        <cell id="2758">
+                            <data id="2768">
+                                <property name="resultSetColumn">partner</property>
+                            </data>
+                        </cell>
+                        <cell id="2759"/>
+                        <cell id="2760"/>
+                        <cell id="2761"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="2762">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <cell id="2763">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">thin</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">thin</property>
+                            <data id="2771">
+                                <property name="textAlign">center</property>
+                                <property name="resultSetColumn">Aggregation</property>
+                            </data>
+                        </cell>
+                        <cell id="2764">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">thin</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">thin</property>
+                            <data id="2770">
+                                <property name="marginLeft">5pt</property>
+                                <property name="textAlign">left</property>
+                                <property name="resultSetColumn">partner</property>
+                            </data>
+                        </cell>
+                        <cell id="2765">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">thin</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">thin</property>
+                            <data id="2769">
+                                <property name="marginRight">10pt</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_count_supplier</property>
+                            </data>
+                        </cell>
+                        <cell id="2766">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">thin</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">thin</property>
+                            <data id="2772">
+                                <property name="marginRight">10pt</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_mmk_supplier</property>
+                            </data>
+                        </cell>
+                        <cell id="2767">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">thin</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">thin</property>
+                            <data id="2773">
+                                <property name="fontWeight">normal</property>
+                                <property name="marginRight">10pt</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_usd_supplier</property>
+                            </data>
+                        </cell>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="2708">
+                    <list-property name="visibility">
+                        <structure>
+                            <property name="format">all</property>
+                            <expression name="valueExpr" type="javascript">true</expression>
+                        </structure>
+                    </list-property>
+                    <cell id="2723">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2733">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation</property>
+                        </data>
+                    </cell>
+                    <cell id="2709">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2710">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">partner</property>
+                        </data>
+                    </cell>
+                    <cell id="2711">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2712">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">total_count</property>
+                        </data>
+                    </cell>
+                    <cell id="2713">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2714">
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">supplier_mmk_condition</property>
+                        </data>
+                    </cell>
+                    <cell id="2727">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2731">
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">total_amount</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2715">
+                    <cell id="2724">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                    </cell>
+                    <cell id="2716">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2817">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Supplier Total]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="2717">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2774">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">count_subtotal_supplier</property>
+                        </data>
+                    </cell>
+                    <cell id="2718">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2782">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_mmk_supplier</property>
+                        </data>
+                    </cell>
+                    <cell id="2728">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2783">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_usd_supplier</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <table id="2785">
+            <property name="marginTop">3pt</property>
+            <property name="dataSet">yacl_other_cash</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">partner</property>
+                    <text-property name="displayName">partner</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["partner"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">total_count</property>
+                    <text-property name="displayName">total_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["total_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">total_amount</property>
+                    <text-property name="displayName">total_amount</text-property>
+                    <expression name="expression" type="javascript">if ( dataSetRow["currency_id"] == 1 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                    <property name="dataType">float</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">RUNNINGCOUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["partner"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_count_other</property>
+                    <text-property name="displayName">sum_count_other</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["total_count"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">condtion_mmk_others</property>
+                    <text-property name="displayName">total_amount</text-property>
+                    <expression name="expression" type="javascript">if ( dataSetRow["currency_id"] == 115 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                    <property name="dataType">float</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_mmk_others</property>
+                    <text-property name="displayName">sum_mmk_others</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["currency_id"] == 115 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_usd_others</property>
+                    <text-property name="displayName">sum_usd_others</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["currency_id"] == 1 )&#13;
+{&#13;
+dataSetRow["total_amount"]&#13;
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_count_others</property>
+                    <text-property name="displayName">subtotal_count_others</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_count_other"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_mmk_others</property>
+                    <text-property name="displayName">subtotal_mmk_others</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_mmk_others"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_usd_others</property>
+                    <text-property name="displayName">subtotal_usd_others</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_usd_others"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="2810">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2804">
+                <property name="width">4in</property>
+            </column>
+            <column id="2805">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2806"/>
+            <column id="2814"/>
+            <header>
+                <row id="2786">
+                    <cell id="2807">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="2788">
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="color">#FF0000</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Others Cash</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="2820">
+                <property name="groupName">NewTableGroup1</property>
+                <expression name="keyExpr" type="javascript">row["partner"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["partner"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="2821">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">true</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="2822"/>
+                        <cell id="2823">
+                            <data id="2833">
+                                <property name="resultSetColumn">partner</property>
+                            </data>
+                        </cell>
+                        <cell id="2824"/>
+                        <cell id="2825"/>
+                        <cell id="2826"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="2827">
+                        <cell id="2828">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2835">
+                                <property name="textAlign">center</property>
+                                <property name="resultSetColumn">Aggregation</property>
+                            </data>
+                        </cell>
+                        <cell id="2829">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2834">
+                                <property name="marginLeft">5pt</property>
+                                <property name="textAlign">left</property>
+                                <property name="resultSetColumn">partner</property>
+                            </data>
+                        </cell>
+                        <cell id="2830">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2836">
+                                <property name="marginRight">10pt</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_count_other</property>
+                            </data>
+                        </cell>
+                        <cell id="2831">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2837">
+                                <property name="marginRight">10pt</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_mmk_others</property>
+                            </data>
+                        </cell>
+                        <cell id="2832">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2838">
+                                <property name="marginRight">10pt</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Currency</property>
+                                    <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_usd_others</property>
+                            </data>
+                        </cell>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="2793">
+                    <list-property name="visibility">
+                        <structure>
+                            <property name="format">all</property>
+                            <expression name="valueExpr" type="javascript">true</expression>
+                        </structure>
+                    </list-property>
+                    <cell id="2808">
+                        <data id="2818">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation</property>
+                        </data>
+                    </cell>
+                    <cell id="2794">
+                        <data id="2795">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">partner</property>
+                        </data>
+                    </cell>
+                    <cell id="2796">
+                        <data id="2797">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">total_count</property>
+                        </data>
+                    </cell>
+                    <cell id="2798">
+                        <data id="2799">
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">condtion_mmk_others</property>
+                        </data>
+                    </cell>
+                    <cell id="2812">
+                        <data id="2819">
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">total_amount</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2800">
+                    <cell id="2809">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                    </cell>
+                    <cell id="2801">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2842">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Others Total]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="2802">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2839">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_count_others</property>
+                        </data>
+                    </cell>
+                    <cell id="2803">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2840">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_mmk_others</property>
+                        </data>
+                    </cell>
+                    <cell id="2813">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2841">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_usd_others</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <table id="2843">
+            <property name="marginTop">3pt</property>
+            <property name="dataSet">yacl_petty_cash</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">partner</property>
+                    <text-property name="displayName">partner</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["partner"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">count</property>
+                    <text-property name="displayName">count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">amount</property>
+                    <text-property name="displayName">amount</text-property>
+                    <expression name="expression" type="javascript">if ( dataSetRow["currency_id"] == 1 )&#13;
+{&#13;
+dataSetRow["amount"]&#13;
+}</expression>
+                    <property name="dataType">float</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">RUNNINGCOUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["partner"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">total_count_petty</property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["count"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">condition_mmk_petty</property>
+                    <text-property name="displayName">amount</text-property>
+                    <expression name="expression" type="javascript">if ( dataSetRow["currency_id"] == 115 )&#13;
+{&#13;
+dataSetRow["amount"]&#13;
+}</expression>
+                    <property name="dataType">float</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_mmk_petty</property>
+                    <text-property name="displayName">sum_mmk_petty</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["currency_id"] == 115 )&#13;
+{&#13;
+dataSetRow["amount"]&#13;
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">sum_usd_total</property>
+                    <text-property name="displayName">sum_usd_total</text-property>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>NewTableGroup1</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["currency_id"] == 1 )&#13;
+{&#13;
+dataSetRow["amount"]&#13;
+}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_count_petty</property>
+                    <text-property name="displayName">subtotal_count_petty</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["total_count_petty"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtotal_mmk_petty</property>
+                    <text-property name="displayName">subtotal_mmk_petty</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_mmk_petty"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">subtoal_usd_petty</property>
+                    <text-property name="displayName">subtoal_usd_petty</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sum_usd_total"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="2868">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2862">
+                <property name="width">4in</property>
+            </column>
+            <column id="2863">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2864"/>
+            <column id="2872"/>
+            <header>
+                <row id="2844">
+                    <cell id="2865">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2875">
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="color">#FF0000</property>
+                            <property name="textAlign">left</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Petty Cash ]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+            </header>
+            <group id="2876">
+                <property name="groupName">NewTableGroup1</property>
+                <expression name="keyExpr" type="javascript">row["partner"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["partner"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="2877">
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">true</expression>
+                            </structure>
+                        </list-property>
+                        <cell id="2878">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                        </cell>
+                        <cell id="2879">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2889">
+                                <property name="resultSetColumn">partner</property>
+                            </data>
+                        </cell>
+                        <cell id="2880">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                        </cell>
+                        <cell id="2881">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                        </cell>
+                        <cell id="2882">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                        </cell>
+                    </row>
+                </header>
+                <footer>
+                    <row id="2883">
+                        <cell id="2884">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2895">
+                                <property name="textAlign">center</property>
+                                <property name="resultSetColumn">Aggregation</property>
+                            </data>
+                        </cell>
+                        <cell id="2885">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2894">
+                                <property name="marginLeft">5pt</property>
+                                <property name="textAlign">left</property>
+                                <property name="resultSetColumn">partner</property>
+                            </data>
+                        </cell>
+                        <cell id="2886">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2890">
+                                <property name="marginRight">10pt</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">total_count_petty</property>
+                            </data>
+                        </cell>
+                        <cell id="2887">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2892">
+                                <property name="marginRight">10pt</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_mmk_petty</property>
+                            </data>
+                        </cell>
+                        <cell id="2888">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
+                            <data id="2893">
+                                <property name="marginRight">10pt</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">sum_usd_total</property>
+                            </data>
+                        </cell>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="2851">
+                    <list-property name="visibility">
+                        <structure>
+                            <property name="format">all</property>
+                            <expression name="valueExpr" type="javascript">true</expression>
+                        </structure>
+                    </list-property>
+                    <cell id="2866">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2874">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Aggregation</property>
+                        </data>
+                    </cell>
+                    <cell id="2852">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2853">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">partner</property>
+                        </data>
+                    </cell>
+                    <cell id="2854">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2855">
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">count</property>
+                        </data>
+                    </cell>
+                    <cell id="2856">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2857">
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">condition_mmk_petty</property>
+                        </data>
+                    </cell>
+                    <cell id="2870">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2873">
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">amount</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2858">
+                    <cell id="2867">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                    </cell>
+                    <cell id="2859">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <text id="2896">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Petty Cash Total]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="2860">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2897">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_count_petty</property>
+                        </data>
+                    </cell>
+                    <cell id="2861">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2898">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtotal_mmk_petty</property>
+                        </data>
+                    </cell>
+                    <cell id="2871">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">1px</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">1px</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">1px</property>
+                        <data id="2899">
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">subtoal_usd_petty</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <table id="2902">
+            <property name="marginTop">5pt</property>
+            <property name="dataSet">yacl_grand_total</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">ycal_supplier::partner</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::partner</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ycal_supplier::partner"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ycal_supplier::currency_id</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::currency_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ycal_supplier::currency_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">ycal_supplier::currency_name</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::currency_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ycal_supplier::currency_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ycal_supplier::total_count</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::total_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ycal_supplier::total_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ycal_supplier::total_amount</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::ycal_supplier::total_amount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ycal_supplier::total_amount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">yacl_other_cash::partner</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::partner</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["yacl_other_cash::partner"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">yacl_other_cash::currency_id</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::currency_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["yacl_other_cash::currency_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">yacl_other_cash::currency_name</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::currency_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["yacl_other_cash::currency_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">yacl_other_cash::total_count</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::total_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["yacl_other_cash::total_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">yacl_other_cash::total_amount</property>
+                    <text-property name="displayName">yacl_combine_supplier_others_cash::yacl_other_cash::total_amount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["yacl_other_cash::total_amount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">journal</property>
+                    <text-property name="displayName">yacl_petty_cash::journal</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["journal"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">currency_id</property>
+                    <text-property name="displayName">yacl_petty_cash::currency_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["currency_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">partner</property>
+                    <text-property name="displayName">yacl_petty_cash::partner</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["partner"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">count</property>
+                    <text-property name="displayName">yacl_petty_cash::count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">amount</property>
+                    <text-property name="displayName">yacl_petty_cash::amount</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["amount"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">source</property>
+                    <text-property name="displayName">yacl_petty_cash::source</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["source"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">grand_total_count</property>
+                    <text-property name="displayName">grand_total_count</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["ycal_supplier::total_count"] + dataSetRow["yacl_other_cash::total_count"] + dataSetRow["count"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">grand_total_mmk</property>
+                    <text-property name="displayName">grand_total_mmk</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["ycal_supplier::currency_id"] == 115 ||&#13;
+	dataSetRow["yacl_other_cash::currency_id"] == 115 ||&#13;
+	dataSetRow["currency_id"] == 115 )&#13;
+	{&#13;
+	dataSetRow["ycal_supplier::total_amount"] + dataSetRow["yacl_other_cash::total_amount"] +&#13;
+	dataSetRow["amount"] &#13;
+	}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">grand_total_usd</property>
+                    <text-property name="displayName">grand_total_usd</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">if ( dataSetRow["ycal_supplier::currency_id"] == 1 ||&#13;
+	dataSetRow["yacl_other_cash::currency_id"] == 1 ||&#13;
+	dataSetRow["currency_id"] == 1 )&#13;
+	{&#13;
+	dataSetRow["ycal_supplier::total_amount"] + dataSetRow["yacl_other_cash::total_amount"] +&#13;
+	dataSetRow["amount"] &#13;
+	}</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="repeatHeader">false</property>
+            <column id="2918">
+                <property name="width">4.5in</property>
+            </column>
+            <column id="2919">
+                <property name="width">0.5in</property>
+            </column>
+            <column id="2920"/>
+            <column id="2921"/>
+            <header>
+                <row id="2903">
+                    <cell id="2904">
+                        <property name="diagonalStyle">none</property>
+                        <property name="antidiagonalStyle">none</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text id="2922">
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Grand Total]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="2905">
+                        <property name="diagonalStyle">none</property>
+                        <property name="antidiagonalStyle">none</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="2923">
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">grand_total_count</property>
+                        </data>
+                    </cell>
+                    <cell id="2906">
+                        <property name="diagonalStyle">none</property>
+                        <property name="antidiagonalStyle">none</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="2924">
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">grand_total_mmk</property>
+                        </data>
+                    </cell>
+                    <cell id="2907">
+                        <property name="diagonalStyle">none</property>
+                        <property name="antidiagonalStyle">none</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="2925">
+                            <property name="fontSize">11pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="marginRight">10pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">grand_total_usd</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="2908">
+                    <cell id="2909"/>
+                    <cell id="2910"/>
+                    <cell id="2911"/>
+                    <cell id="2912"/>
+                </row>
+            </detail>
+            <footer>
+                <row id="2913">
+                    <cell id="2914"/>
+                    <cell id="2915"/>
+                    <cell id="2916"/>
+                    <cell id="2917"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
